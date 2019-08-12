@@ -1,0 +1,40 @@
+<script type="text/javascript">
+    $(function () {
+        $("#form1").validate({
+            rules: {
+                txt1: {
+                    required: true,
+                    maxlength: 10
+                }
+            },
+            messages: {
+                txt1: {
+                    required: " required",
+                    maxlength: jQuery.format("Limited to {0} characters!")
+                }
+            }
+        });
+    });
+</script>
+
+<div id="content_hero" style="background-image: url(images/hero-contact.jpg)">
+    <div class="container">
+        <div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0"
+            data-translatey="100">
+            <div class="col-md-9">
+
+                <h1>Formulario de registro :)</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main content -->
+<div class="container section small-padding">
+
+    <form id="form1" action="" method="get">
+        <input type="text" id="txt1" name="txt1" />
+        <br>
+        <input type="submit" id="sub1" value="submit" />
+    </form>
+</div>

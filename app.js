@@ -27,7 +27,17 @@ app.engine(
     extname: ".hbs",
     defaultLayout: "",
     layoutsDir: "",
-    partialsDir: ["views"]
+    partialsDir: ["views"],
+    helpers: {
+      if_eq: function (a, b, opts) {
+        var n = typeof a;
+        if (n == b) {
+          return opts.fn(this);
+        } else {
+          return opts.inverse(this);
+        }
+      } 
+    }
   })
 );
 app.set("view engine", "hbs");
