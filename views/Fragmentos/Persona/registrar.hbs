@@ -3,11 +3,14 @@
 <script type="text/javascript">
 
     //funcion que nos permite calcular la edad a partir de la fecha de nacimiento
-    $(function () {
-        $("#fechaNacimiento").change(function () {  //  funcion que se ejecuta al momento que el valor de la fecha de naciemiento cambia
+    $(document).ready(function (){
+    $("#fechaNacimiento").change(function () {  //  funcion que se ejecuta al momento que el valor de la fecha de naciemiento cambia
             var edad = calcularEdad($("#fechaNacimiento").val());
             $("#edad").val(edad);
         })
+    });
+    $(function () {
+        
 
         $.validator.addMethod("soloLetras", function (value, element) {
             return this.optional(element) || /^[a-zA-Z\s]+$/i.test(value);
@@ -61,7 +64,7 @@
 <!-- Main content -->
 <div class="container section small-padding">
 
-    <form id="register-form" class="login" method="" action="">
+    <form id="register-form" class="login" method="POST" action="guardar_persona">
         <div class="field-wrap">
             <div>
                 <label for="nombres">Ingrese sus nombres</label>
@@ -82,7 +85,7 @@
             </div><br>
             <div>
                 <label for="">Edad</label>
-                <input type="text" disabled placeholder="Edad" name="edad" id="edad" class="login__input" />
+                <input type="text" placeholder="Edad" name="edad" id="edad" class="login__input" readonly/>
             </div><br>
             <div>
                 <label for="">Ingrese su correo electronico</label>

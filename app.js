@@ -8,6 +8,7 @@ var exphbs = require("express-handlebars");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var adminRouter = require('./routes/admin');
 
 var session = require("express-session");
 var bodyParser = require("body-parser");
@@ -61,6 +62,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
