@@ -30,8 +30,8 @@ function calcularEdad(fecha) {
     //var fecha = document.getElementById("nacimiento");
     var hoy = new Date();
     var cumpleanos = new Date(fecha);
-    var edad = hoy.getFullYear() - cumpleanos.getFullYear();
-    var m = hoy.getMonth() - cumpleanos.getMonth();
+    var edad = hoy.getFullYear() - cumplenos.getFullYear();
+    var m = hoy.getMonth() - cumpleanos.gaetMonth();
 
     if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
         edad--;

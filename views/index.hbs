@@ -68,7 +68,7 @@
                                             <i id="cerrar_sesion">Cerrar sesion</i>
                                         </a>
                                         <div class="search">
-                                            <a href="#">
+                                            <a href="/miPerfil">
                                                 <i>{{usuario}}</i>
                                             </a>
                                         </div>
@@ -95,10 +95,13 @@
                     <div class="navbar-collapse collapse">
                         <ul id="menu-primary" class="nav navbar-nav">
                             <li class="active">
-                                <a href="/">Home</a>
+                                <a href="/">Inicio</a>
                             </li>
-                            <li>
-                                <a href="#">What's on</a>
+                            <li class="dropdown">
+                                <a href="#">Peliculas</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/peliculas/nueva">Añadir pelicula</a></li>
+                                </ul>
                             </li>
                             <li>
                                 <a href="#">Shortcodes</a>

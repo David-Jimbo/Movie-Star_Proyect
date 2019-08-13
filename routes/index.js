@@ -14,12 +14,27 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/principal'});
 });
 
-router.get('/registrarse', function (req, res, next) {
+router.post('/registrarse', function (req, res, next) {
   res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/registrar' });
 });
 
+router.get('/miPerfil', function (req, res, next) {
+  res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/verPerfil' });
+});
+
+router.get('/editarPerfil', function (req, res, next) {
+  res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/editarPerfil' });
+});
+
+router.get('/peliculas/nueva', function (req, res, next) {
+  res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/registrar' });
+});
+
+router.get('/peliculas/verTodas', function (req, res, next) {
+  res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/registrar' });
+});
 router.get('/test', function (req, res, next) {
-  res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/test' });
+  res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/verPerfil' });
 });
 
 
