@@ -3,14 +3,14 @@
 <script type="text/javascript">
 
     //funcion que nos permite calcular la edad a partir de la fecha de nacimiento
-    $(document).ready(function (){
-    $("#fechaNacimiento").change(function () {  //  funcion que se ejecuta al momento que el valor de la fecha de naciemiento cambia
+    $(document).ready(function () {
+        $("#fechaNacimiento").change(function () {  //  funcion que se ejecuta al momento que el valor de la fecha de naciemiento cambia
             var edad = calcularEdad($("#fechaNacimiento").val());
             $("#edad").val(edad);
         })
     });
     $(function () {
-        
+
 
         $.validator.addMethod("soloLetras", function (value, element) {
             return this.optional(element) || /^[a-zA-Z\s]+$/i.test(value);
@@ -24,7 +24,7 @@
             rules: {
                 nombres: {
                     required: true,
-                    soloLetras:true
+                    soloLetras: true
                 },
                 apellidos: {
                     required: true,
@@ -34,7 +34,7 @@
                     cedula: true,
                     required: true
                 },
-                fechaNacimiento:{
+                fechaNacimiento: {
                     required: true
                 },
                 email: {
@@ -66,6 +66,23 @@
 
     <form id="register-form" class="login" method="POST" action="guardar_persona">
         <div class="field-wrap">
+
+            {{#if_eq msg 'undefined'}}
+                {{ else }}
+                {{#if_eq msg.error 'undefined'}}
+                    {{ else }}
+                    <div class="label label-danger" style="font-size: 18px">
+                        {{msg.error}}
+                    </div>
+                {{/if_eq}}
+                {{#if_eq msg.ok 'undefined'}}
+                    {{ else }}
+                    <div class="label label-success" style="font-size: 18px">
+                        {{msg.ok}}
+                    </div>
+                {{/if_eq}}
+            {{/if_eq}}
+
             <div>
                 <label for="nombres">Ingrese sus nombres</label>
                 <input type="text" placeholder="Nombres" name="nombres" id="nombres" class="login__input" />
@@ -85,7 +102,7 @@
             </div><br>
             <div>
                 <label for="">Edad</label>
-                <input type="text" placeholder="Edad" name="edad" id="edad" class="login__input" readonly/>
+                <input type="text" placeholder="Edad" name="edad" id="edad" class="login__input" readonly />
             </div><br>
             <div>
                 <label for="">Ingrese su correo electronico</label>
