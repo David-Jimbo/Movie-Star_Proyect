@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var passport = require('passport');
 
 var Rol = require('../controladores/rol_controller');
 
@@ -21,6 +22,26 @@ router.get('/registrarse', function (req, res, next) {
 router.get('/test', function (req, res, next) {
   res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/test' });
 });
+
+////////inicio sesion
+
+
+router.get('/rol', function(req, res){
+  if(req.user.rol === 'administrador'){
+    res.redirect('/registrarse');
+  }else if(req.user.rol === 'usuario'){
+    res.redirect('/test');
+  }
+});
+router.post('/inicio_sesion', 
+        passport.authenticate('local-signin',
+              {successRedirect:'/rol',
+              failureRedirect:'/',
+               failureFlash: true}
+
+        ));
+
+
 
 
 router.post('/guardar_persona', persona.guardar);
