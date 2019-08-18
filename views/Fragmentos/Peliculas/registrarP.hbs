@@ -33,7 +33,8 @@
         $("#register-form").validate({
             ignore: "",
             rules: {
-                nombre: {
+               
+            nombre_peli: {
                     required: true,
                     soloLetras: true
                 },
@@ -44,25 +45,24 @@
                 director: {
                     required: true
                 },
-                protagonistas: {
-                    required: true
-                },
+                
                 clasificacion: {
                     required: true
                 },
                 duracion: {
                     required: true
                 },
-                descripcion: {
+                sinopsis: {
                     required: true
                 },
-                imagen: {
+                fecha: {
                     required: true
                 },
                 trailer: {
                     required: true,
                     validarLink: true
                 }
+
             }, messages: {
                 genero: {
                     dummy: "Ingrese este campo"
@@ -88,7 +88,7 @@
 <!-- Main content -->
 <div class="container section small-padding">
 
-    <form id="register-form" class="login" method="POST" action="">
+    <form id="register-form" class="login" method="POST" action="/guardar_peli">
 
         <div class="field-wrap">
             {{#if_eq msg 'undefined'}}
@@ -107,9 +107,10 @@
                 {{/if_eq}}
             {{/if_eq}}
 
+            <input type="hidden" value="0" id="external" name="external"/>
             <div>
                 <label for="nombre">Nombre de la pelicula</label>
-                <input type="text" placeholder="Nombre de la pelicula" name="nombre" id="nombre" class="login__input" />
+                <input type="text" placeholder="Nombre de la pelicula" name="nombre_peli" id="nombre_peli" class="login__input" />
             </div><br>
             <div>
                 <label for="">Genero/s</label>
@@ -119,6 +120,11 @@
             <div>
                 <label for="">Director/es</label>
                 <input type="text" placeholder="Nombre del Director" name="director" id="director" data-role="tagsinput"
+                    value="" />
+            </div><br>
+            <div>
+                <label for="">Fecha de lanzamiento</label>
+                <input type="date" placeholder="" name="fecha" id="fecha" data-role="tagsinput"
                     value="" />
             </div><br>
             <div>
@@ -149,20 +155,17 @@
             </div><br>
             <div>
                 <label for="">Descripcion</label>
-                <textarea placeholder="Descripcion de le pelicula" rows="5" name="descripcion" id="descripcion"
+                <textarea placeholder="Descripcion de le pelicula" rows="5" name="sinopsis" id="sinopsis"
                     class="login__input"></textarea>
             </div><br>
-            <div>
-                <label for="">Añadir Imagen</label>
-                <input type="file" name="Subir  archivo" id="imagen" name="imagen">
-            </div><br>
-            <div>
+            
+
+            <!--<div>
                 <label for="">Trailer</label>
                 <input type="text" placeholder="Ingrese el link del trailer" name="trailer" id="trailer"
                     class="login__input" />
-            </div><br>
+            </div><br>-->
         </div>
-
 
         <div class="form" style="text-align: right">
             <br> <button type='submit' id="reg" class="btn btn-success" value="submit">Registrar pelicula</button>

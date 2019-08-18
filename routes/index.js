@@ -109,7 +109,8 @@ res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/verPer
 ////////inicio sesion
 
 
-
+//peli
+router.post('/guardar_peli', Pelicula.guardar_p);
 
 
 
