@@ -23,7 +23,7 @@ var auth = function middleWare(req, res, next) {
 
 
 var admin = function middleWare(req, res, next) {
-  if (req.user.rol === 'admin') {
+  if (req.user.rol === 'administrador') {
       next();
   } else {
       req.flash('error', 'No tienes permiso para ingresar a esta direccion!!');
