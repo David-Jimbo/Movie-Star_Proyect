@@ -13,7 +13,10 @@ var persona = new personaC();
 var cuentaC = require('../controladores/cuenta_controller');
 var cuenta = new cuentaC()
 
+//pelicula controller
 
+var pelicula = require('../controladores/pelicula_controller');
+var Pelicula = new pelicula();
 
 
 ///////
