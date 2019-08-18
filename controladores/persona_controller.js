@@ -16,11 +16,15 @@ class persona_controller {
 
         cuenta.findAll({where:{correo:req.body.email}}).then(function (result){
             if(result.length >0){
-                res.send('El correo ya existe, ingrese otro');
+                //res.send('El correo ya existe, ingrese otro');
+                req.flash('error','El correo ya existe, ingrese otro');
+                res.redirect('/registrarse');
             }else{
                 persona.findAll({include: [{model:models.cuenta, as:'cuenta'}], where:{cedula:req.body.cedula}}).then(function (resultC){
                     if(resultC.length > 0){
-                       res.send('La cedula ya existe, ingrese otra');
+                       //res.send('La cedula ya existe, ingrese otra');
+                       req.flash('error','La cedula ya existe, ingrese otra');
+                       res.redirect('/registrarse');
                     }else{
                        rol.findOne({ where: { tipo: 'usuario' } }).then(rolU => {
                            var generateHash = function (clave) {

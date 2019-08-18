@@ -75,7 +75,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/registrarse', function (req, res, next) {
-  res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/registrar' });
+  res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/registrar', msg: { error: req.flash('error'), ok: req.flash('info')} });
 });
 
 router.get('/mi_perfil', function (req, res, next) {
