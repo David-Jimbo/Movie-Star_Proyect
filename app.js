@@ -32,7 +32,7 @@ app.engine(
     helpers: {
       if_eq: function (a, b, opts) {
         var n = typeof a;
-        if (n == b) {
+        if (n == b && n.length > 0 ) {
           return opts.fn(this);
         } else {
           return opts.inverse(this);

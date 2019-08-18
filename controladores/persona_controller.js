@@ -25,8 +25,6 @@ class persona_controller {
                        rol.findOne({ where: { tipo: 'usuario' } }).then(rolU => {
                            var generateHash = function (clave) {
                                return bcrypt.hashSync(clave, bcrypt.genSaltSync(saltRounds), null);
-                               //
-               
                            }
                
                                var datosP = {// se esta guardando en el arreglo datos los names de formulario 

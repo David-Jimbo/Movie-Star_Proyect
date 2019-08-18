@@ -55,7 +55,7 @@
             data-translatey="100">
             <div class="col-md-9">
 
-                <h1>Formulario de registro :)</h1>
+                <h1>Editando mi perfil</h1>
             </div>
         </div>
     </div>
@@ -64,25 +64,8 @@
 <!-- Main content -->
 <div class="container section small-padding">
 
-    <form id="register-form" class="login" method="POST" action="guardar_persona">
+    <form id="register-form" class="login" method="POST" action="#">
         <div class="field-wrap">
-
-            {{#if_eq msg 'undefined'}}
-                {{ else }}
-                {{#if_eq msg.error 'undefined'}}
-                    {{ else }}
-                    <div class="label label-danger" style="font-size: 18px">
-                        {{msg.error}}
-                    </div>
-                {{/if_eq}}
-                {{#if_eq msg.ok 'undefined'}}
-                    {{ else }}
-                    <div class="label label-success" style="font-size: 18px">
-                        {{msg.ok}}
-                    </div>
-                {{/if_eq}}
-            {{/if_eq}}
-
             <div>
                 <label for="nombres">Ingrese sus nombres</label>
                 <input type="text" placeholder="Nombres" name="nombres" id="nombres" class="login__input" />
@@ -116,8 +99,11 @@
         </div>
 
         <div class="form" style="text-align: right">
-            <br> <button type='submit' id="reg" class="btn btn-success" value="submit">Registrarse</button>
+            <br> 
+            <button id="reg" class="btn btn--danger">Cancelar</button>
+            <button type='submit' id="reg" class="btn btn-success" value="submit">Guardar cambios</button>
         </div>
+
     </form>
 
 </div>
