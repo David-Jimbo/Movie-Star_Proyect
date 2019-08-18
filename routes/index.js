@@ -13,7 +13,10 @@ var persona = new personaC();
 var cuentaC = require('../controladores/cuenta_controller');
 var cuenta = new cuentaC()
 
+//pelicula controller
 
+var pelicula = require('../controladores/pelicula_controller');
+var Pelicula = new pelicula();
 
 
 ///////
@@ -70,7 +73,7 @@ router.post('/inicio_sesion',
 
         router.get('/rol', function (req, res){
           if (req.user.rol === 'administrador'){
-            res.redirect('/admin/peliculas');
+            res.redirect('/peliculas');
           }else if(req.user.rol === 'usuario'){
             res.redirect('/test');
           }
@@ -80,7 +83,7 @@ router.post('/inicio_sesion',
 /* GET home page. */
 router.get('/', function(req, res, next) {
   Rol.crear_roles();
-  res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/principal', msg: { error: req.flash('error'), ok: req.flash('info')} });
+  res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/principal',  error: req.flash('error'), info: req.flash('info')});
 });
 
 router.get('/registrarse', function (req, res, next) {
@@ -95,14 +98,12 @@ router.get('/editar_perfil', function (req, res, next) {
   res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/editarPerfil' });
 });
 
-router.get('/admin/peliculas', auth,admin,function (req, res, next) {
-  res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Peliculas/verTodas', sesion:true });
-});
+router.get('/peliculas', Pelicula.listar_peli);
 
 
 
 router.get('/admin/peliculas/nueva',  auth, admin,function (req, res, next) {
-    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Peliculas/registrarP' ,sesion:true});
+    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Peliculas/registrarP' ,sesion:true, msg: { error: req.flash('error'), ok: req.flash('info')}});
    
  
 });
@@ -118,7 +119,9 @@ res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/verPer
 ////////inicio sesion
 
 
-
+//peli
+router.post('/guardar_peli', Pelicula.guardar_pelicula);
+//router.get('/peliculas/ver', Pelicula.listar_peli);
 
 
 

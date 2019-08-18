@@ -30,6 +30,7 @@
                     <li class="date"><span>Wednesday, 8 March</span></li>
                 </ul>
                 <div id="mon">
+                     {{#each lista}}
                     <div class="row movie-tabs">
                         <div class="col-md-2 col-sm-3">
                             <a href="single-movie.html">
@@ -37,10 +38,10 @@
                             </a>
                         </div>
                         <div class="col-md-10 col-sm-9">
-                            <span class="title">Action, Adventure, Fantasy</span>
-                            <h3 class="no-underline">End of an era</h3>
-                            <p>European mercenaries searching for black powder become embroiled in the
-                                defense of End of an era of China against a horde of monstrous creatures.
+                            
+                            <span class="title">{{this.genero}}</span>
+                            <h3 class="no-underline">{{this.nombre_peli}}</h3>
+                            <p>{{this.sinopsis}}
                             </p>
                             <p><a href="news-single.html" class="arrow-button">Full synopsis</a></p>
                             <div class="row">
@@ -57,11 +58,13 @@
                                 </div>
                                 <div class="col-md-4 col-sm-3 running-time">
                                     <hr class="space-10" />
-                                    105 mins <span class="certificate">15</span>
+                                    {{this.duracion}} <span class="certificate">{{this.clasificacion}}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
+                                                {{/each}}
+
                     <div class="row movie-tabs">
                         <div class="col-md-2 col-sm-3">
                             <a href="single-movie.html">
