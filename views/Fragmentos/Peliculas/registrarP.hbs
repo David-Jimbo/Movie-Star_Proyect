@@ -8,13 +8,20 @@
         $("#genero").tagsinput();
         $("#director").tagsinput();
         $("#protagonistas").tagsinput();
-        
     });
 
-    function etiquetas(Nombre) {
+    function validarArchivo() {
+        if ($('#imagen').get(0).files.length === 0){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     $(function () {
+        $.validator.addMethod("validarFoto", function (value, element) {
+            return this.optional(element) || validarArchivo();
+        }, "Eliga una foto para la pelicula");
 
         $.validator.addMethod("soloLetras", function (value, element) {
             return this.optional(element) || /^[a-zA-Z\s]+$/i.test(value);
@@ -23,12 +30,6 @@
         $.validator.addMethod("validarLink", function (value, element) {
             return this.optional(element) || /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/i.test(value);
         }, "Link invalido");
-
-        $.validator.addMethod("checkTags", function (value) { //add custom method
-            //Tags input plugin converts input into div having id #YOURINPUTID_tagsinput
-            //now you can count no of tags
-            return ($("#genero").tagsinput("items").length > 0);
-        });
 
         $("#register-form").validate({
             ignore: "",
@@ -39,7 +40,7 @@
                 },
                 genero: {
                     required: true,
-                    checkTags: true
+                    //checkTags: true
                 },
                 director: {
                     required: true
@@ -56,7 +57,11 @@
                 descripcion: {
                     required: true
                 },
+                estreno: {
+                    required: true
+                },
                 imagen: {
+                    //validarFoto: true
                     required: true
                 },
                 trailer: {
@@ -64,9 +69,9 @@
                     validarLink: true
                 }
             }, messages: {
-                genero: {
-                    dummy: "Ingrese este campo"
-                },
+                imagen: {
+                    required: 'La foto es requerida'
+                }
             }
         });
     })
@@ -91,21 +96,6 @@
     <form id="register-form" class="login" method="POST" action="">
 
         <div class="field-wrap">
-            {{#if_eq msg 'undefined'}}
-                {{ else }}
-                {{#if_eq msg.error 'undefined'}}
-                    {{ else }}
-                    <div class="label label-danger" style="font-size: 18px">
-                        {{msg.error}}
-                    </div>
-                {{/if_eq}}
-                {{#if_eq msg.ok 'undefined'}}
-                    {{ else }}
-                    <div class="label label-success" style="font-size: 18px">
-                        {{msg.ok}}
-                    </div>
-                {{/if_eq}}
-            {{/if_eq}}
 
             <div>
                 <label for="nombre">Nombre de la pelicula</label>
@@ -153,8 +143,16 @@
                     class="login__input"></textarea>
             </div><br>
             <div>
+                <div>
+                    <label for="">En entreno</label>
+                    <select name="estreno" id="estreno">
+                        <option value="">-------Eliga una opcion--------</option>
+                        <option value="1">"Si"</option>
+                        <option value="0">"No"</option>
+                    </select>
+                </div><br>
                 <label for="">Añadir Imagen</label>
-                <input type="file" name="Subir  archivo" id="imagen" name="imagen">
+                <input type="file" id="imagen" name="imagen">
             </div><br>
             <div>
                 <label for="">Trailer</label>
@@ -165,7 +163,9 @@
 
 
         <div class="form" style="text-align: right">
-            <br> <button type='submit' id="reg" class="btn btn-success" value="submit">Registrar pelicula</button>
+            <br>
+            <a   href="/peliculas" class="btn btn-danger" >Cancelar</a>
+            <button type='submit' id="reg" class="btn btn-success" value="submit">Registrar pelicula</button>
         </div><br>
     </form>
 
