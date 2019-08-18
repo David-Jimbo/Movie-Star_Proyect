@@ -31,10 +31,10 @@ class pelicula_controller {
 
     guardar_p(req, res) {
         if (req.body.external === "0") {
-            Pelicula.findOne({ where: { cedula: req.body.nombre_peli } }).then(function (pelicula) {
+            Pelicula.findOne({ where: { nombre_peli: req.body.nombre_peli } }).then(function (pelicula) {
                 if (pelicula) {
                     req.flash('error', 'La pelicula ya ha sido registrada');
-                    res.redirect('/listapeli');
+                    res.redirect('/admin/peliculas/nueva');
                 } else {
                     Pelicula.create({
                         nombre_peli: req.body.nombre_peli,
@@ -49,7 +49,7 @@ class pelicula_controller {
                     }).then(function (newPelicula, created) {
                         if (newPelicula) {
                             req.flash('ok', 'se ha guardado la pelicula');
-                            res.redirect('/listapeli');
+                            res.redirect('/peliculas');
                         }
                     }).error(function (error) {
                         res.send(error);
@@ -58,7 +58,7 @@ class pelicula_controller {
 
             }).catch(function (err) {
                 req.flash('error', 'Hubo un problema');
-                res.redirect('/listapeli');
+                res.redirect('/peliculas');
             });
         } else {
             Pelicula.update({
@@ -74,7 +74,7 @@ class pelicula_controller {
             }, { where: { external_id: req.body.external } }).then(function (updatePelicula, created) {
                 if (updatePelicula) {
                     req.flash('ok', 'se ha modificado la pelicula');
-                    res.redirect('/listapeli');
+                    res.redirect('/peliculas');
                 }
             }).error(function (error) {
                 res.send(error);

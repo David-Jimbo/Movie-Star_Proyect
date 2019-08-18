@@ -73,7 +73,7 @@ router.post('/inicio_sesion',
 
         router.get('/rol', function (req, res){
           if (req.user.rol === 'administrador'){
-            res.redirect('/admin/peliculas');
+            res.redirect('/peliculas');
           }else if(req.user.rol === 'usuario'){
             res.redirect('/test');
           }
@@ -98,7 +98,7 @@ router.get('/editar_perfil', function (req, res, next) {
   res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/editarPerfil' });
 });
 
-router.get('/admin/peliculas', auth,admin,function (req, res, next) {
+router.get('/peliculas',function (req, res, next) {
   res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Peliculas/verTodas', sesion:true });
 });
 
