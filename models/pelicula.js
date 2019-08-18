@@ -4,8 +4,11 @@ module.exports = (sequelize, DataTypes) => {
     nombre_peli: DataTypes.STRING,
     genero: DataTypes.STRING,
     fecha_lanzamiento: DataTypes.DATEONLY,
-    edad: DataTypes.INTEGER,
+    sinopsis: DataTypes.STRING,
     clasificacion: DataTypes.STRING,
+    duracion: DataTypes.INTEGER,
+    director: DataTypes.STRING,
+    protagonistas:DataTypes.STRING,
     external_id: DataTypes.UUID,
    
   }, {freezeTableName: true});
