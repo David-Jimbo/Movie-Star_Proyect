@@ -105,7 +105,7 @@ router.get('/peliculas',function (req, res, next) {
 
 
 router.get('/admin/peliculas/nueva',  auth, admin,function (req, res, next) {
-    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Peliculas/registrarP' ,sesion:true});
+    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Peliculas/registrarP' ,sesion:true, msg: { error: req.flash('error'), ok: req.flash('info')}});
    
  
 });
@@ -122,7 +122,7 @@ res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/verPer
 
 
 //peli
-router.post('/guardar_peli', Pelicula.guardar_p);
+router.post('/guardar_peli', Pelicula.guardar_pelicula);
 
 
 
