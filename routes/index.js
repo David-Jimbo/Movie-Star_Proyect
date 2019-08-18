@@ -9,6 +9,11 @@ var Rol = require('../controladores/rol_controller');
 var personaC = require('../controladores/persona_controller');
 var persona = new personaC();
 
+//cuenta controller
+var cuentaC = require('../controladores/cuenta_controller');
+var cuenta = new cuentaC()
+
+
 
 
 ///////
@@ -30,6 +35,10 @@ var admin = function middleWare(req, res, next) {
       res.redirect('/');
   }
 };
+
+router.get('/cerrar_sesion', cuenta.cerrar);
+
+
 
 
 //svar admin = function(req, res, next){
