@@ -115,9 +115,9 @@ router.get('/test', function (req, res, next) {
     res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/verPerfil', sesion: true, usuario: req.user.nombre });
 });
 
-router.get('/verPelicula', function (req, res, next) {
-    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Peliculas/verPelicula' });
-});
+
+
+
 
 
 ////////inicio sesion
@@ -127,6 +127,13 @@ router.get('/verPelicula', function (req, res, next) {
 router.post('/guardar_peli', Pelicula.guardar_pelicula);
 //router.get('/peliculas/ver', Pelicula.listar_peli);
 
+router.get('/verPelicula', function (req, res, next) {
+    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Peliculas/verPelicula' });
+});
+
+router.get('/editarPelicula', function (req, res, next) {
+    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Peliculas/editarPelicula' });
+});
 
 
 
