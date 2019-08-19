@@ -9,8 +9,8 @@ var Pelicula = models.pelicula;
 class pelicula_controller {
 
     listar_peli(req, res) {
-
-        Pelicula.findAll({}).then(function (pelicula) {
+       
+        Pelicula.findAll({where:{estado:true}}).then(function (pelicula) {
             if (pelicula) {
                 res.render('index', {
                     title: 'PELICULA', fragmento: 'Fragmentos/Peliculas/verTodas', 
@@ -24,12 +24,15 @@ class pelicula_controller {
 
                 });
                 console.log(pelicula);
+                
             }
         }).error(function (error) {
             res.send(error);
         });
 
     }
+
+    
 
     guardar_p(req, res) {
         if (req.body.external === "0") {
@@ -47,6 +50,7 @@ class pelicula_controller {
                         duracion: req.body.duracion,
                         director: req.body.director,
                         protagonistas: req.body.protagonistas,
+                        estado: req.body.proyeccion,
                         external_id: uuid.v4()
                     }).then(function (newPelicula, created) {
                         if (newPelicula) {
@@ -103,6 +107,7 @@ class pelicula_controller {
                         duracion: req.body.duracion,
                         director: req.body.director,
                         protagonistas: req.body.protagonistas,
+                        estado: req.body.proyeccion,
                         external_id: uuid.v4()
                 };
 
