@@ -21,22 +21,22 @@ var Pelicula = new pelicula();
 
 ///////
 var auth = function middleWare(req, res, next) {
-  if (req.isAuthenticated()) {
-      next();
-  } else {
-      req.flash("error", "Inicia sesion !!!");
-      res.redirect('/');
-  }
+    if (req.isAuthenticated()) {
+        next();
+    } else {
+        req.flash("error", "Inicia sesion !!!");
+        res.redirect('/');
+    }
 };
 
 
 var admin = function middleWare(req, res, next) {
-  if (req.user.rol === 'administrador') {
-      next();
-  } else {
-      req.flash('error', 'No tienes permiso para ingresar a esta direccion!!');
-      res.redirect('/');
-  }
+    if (req.user.rol === 'administrador') {
+        next();
+    } else {
+        req.flash('error', 'No tienes permiso para ingresar a esta direccion!!');
+        res.redirect('/');
+    }
 };
 
 router.get('/cerrar_sesion', cuenta.cerrar);
@@ -46,74 +46,78 @@ router.get('/cerrar_sesion', cuenta.cerrar);
 
 //svar admin = function(req, res, next){
 //if(req.user. rol === 'administrador'){
-  //   next();
+//   next();
 //}else {
-  //req.flash('error', 'No tienes permiso para ingresar a esta direccion!');
-  //    res.redirect('/');
+//req.flash('error', 'No tienes permiso para ingresar a esta direccion!');
+//    res.redirect('/');
 //}
 //};
 
 //router.get('/rol', function(req, res){
-  //if(req.user.rol === 'administrador'){
+//if(req.user.rol === 'administrador'){
 //
-  //res.redirect('/peliculas');
-  //}else if(req.user.rol === 'usuario'){
-    //res.redirect('/registrarse');
- //}
+//res.redirect('/peliculas');
+//}else if(req.user.rol === 'usuario'){
+//res.redirect('/registrarse');
+//}
 //});
-router.post('/inicio_sesion', 
-        passport.authenticate('local-signin',
-              {successRedirect:'/rol',
-              failureRedirect:'/',
-               failureFlash: true},
-               
+router.post('/inicio_sesion',
+    passport.authenticate('local-signin',
+        {
+            successRedirect: '/rol',
+            failureRedirect: '/',
+            failureFlash: true
+        },
 
-        ));
+
+    ));
 
 
-        router.get('/rol', function (req, res){
-          if (req.user.rol === 'administrador'){
-            res.redirect('/peliculas');
-          }else if(req.user.rol === 'usuario'){
-            res.redirect('/test');
-          }
-        });
+router.get('/rol', function (req, res) {
+    if (req.user.rol === 'administrador') {
+        res.redirect('/peliculas');
+    } else if (req.user.rol === 'usuario') {
+        res.redirect('/test');
+    }
+});
 ///////
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  Rol.crear_roles();
-  res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/principal',  error: req.flash('error'), info: req.flash('info')});
+router.get('/', function (req, res, next) {
+    Rol.crear_roles();
+    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/principal', error: req.flash('error'), info: req.flash('info') });
 });
 
 router.get('/registrarse', function (req, res, next) {
-  res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/registrar', msg: { error: req.flash('error'), ok: req.flash('info')} });
+    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/registrar', msg: { error: req.flash('error'), ok: req.flash('info') } });
 });
 
 router.get('/mi_perfil', function (req, res, next) {
-  res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/verPerfil' });
+    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/verPerfil' });
 });
 
 router.get('/editar_perfil', function (req, res, next) {
-  res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/editarPerfil' });
+    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/editarPerfil' });
 });
 
 router.get('/peliculas', Pelicula.listar_peli);
 
 
 
-router.get('/admin/peliculas/nueva',  auth, admin,function (req, res, next) {
-    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Peliculas/registrarP' ,sesion:true, msg: { error: req.flash('error'), ok: req.flash('info')}});
-   
- 
+router.get('/admin/peliculas/nueva', auth, admin, function (req, res, next) {
+    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Peliculas/registrarP', sesion: true, msg: { error: req.flash('error'), ok: req.flash('info') } });
+
+
 });
 
 
 router.get('/test', function (req, res, next) {
-res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/verPerfil', sesion:true, usuario:req.user.nombre});
+    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/verPerfil', sesion: true, usuario: req.user.nombre });
 });
 
-
+router.get('/verPelicula', function (req, res, next) {
+    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Peliculas/verPelicula' });
+});
 
 
 ////////inicio sesion

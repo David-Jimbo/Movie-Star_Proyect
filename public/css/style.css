@@ -229,7 +229,10 @@ hr.space-40 {
 
 .section {
   padding-top: 75px;
-  padding-bottom: 75px;
+}
+
+#traill {
+  padding-top: 0px !important;
 }
 
 .section.negative-margin {
@@ -1257,6 +1260,21 @@ a.arrow-button:hover {
   background: #4a4a4a;
 }
 
+span.certificate {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 33px;
+  display: inline-block;
+  width: 33px;
+  height: 33px;
+  margin-left: 5px;
+  text-align: center;
+  letter-spacing: 0;
+  color: #fff;
+  border-radius: 50%;
+  background: #4a4a4a;
+}
+
 .comingSoon-slides > div {
   position: static;
 }
@@ -1859,6 +1877,16 @@ ul.movie-info li {
 }
 
 ul.movie-info li i {
+  font-size: 12px;
+  font-style: normal;
+  display: inline-block;
+  width: 115px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #4a4a4a;
+}
+
+#classs{
   font-size: 12px;
   font-style: normal;
   display: inline-block;

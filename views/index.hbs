@@ -69,33 +69,40 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="search">
-                                {{#if_eq sesion 'undefined'}}
-                                <a href="#">
-                                    <i data-toggle="modal" data-target="#exampleModal">Iniciar sesion</i>
-                                </a>
-                                {{#if error}}
-                                <div class="label label-danger" style="font-size: 18px">
-                                    {{error}}
-                                </div>
-                                {{/if}}
-                                {{#if info}}
-                                <div class="label label-success" style="font-size: 18px">
-                                    {{info}}
-                                </div>
-                                {{/if}}
-                                
-                                {{ else }}
-                                <a href="/cerrar_sesion" ); ">
-                                            <i id=" cerrar_sesion">Cerrar sesion</i>
-                                </a>
+                            {{#if_eq sesion 'undefined'}}
                                 <div class="search">
-                                    <a href="/mi_perfil">
-                                        <i>{{usuario}}</i>
+                                    <a href="#">
+                                        <i data-toggle="modal" data-target="#exampleModal">Iniciar sesion</i>
+                                    </a>
+                                    {{#if_eq msg 'undefined'}}
+                                        {{ else }}
+                                        {{#if_eq msg.error 'undefined'}}
+                                            {{ else }}
+                                            <div class="label label-danger" style="font-size: 18px" id="err">
+                                                {{msg.error}}
+                                            </div>
+                                        {{/if_eq}}
+                                        {{#if_eq msg.ok 'undefined'}}
+                                            {{ else }}
+                                            <div class="label label-success" style="font-size: 18px">
+                                                {{msg.ok}}
+                                            </div>
+                                        {{/if_eq}}
+                                    {{/if_eq}}
+                                </div>
+                                {{ else }}
+                                
+                                <div class="search">
+                                    <a href="/cerrar_sesion">
+                                        <i id="cerrar_sesion">Cerrar sesion</i>
                                     </a>
                                 </div>
-                                {{/if_eq}}
-                            </div>
+                                <div class="search" >
+                                    <a href="/mi_perfil">
+                                        <i style="color: blueviolet !important">{{usuario}}</i>
+                                    </a>
+                                </div>
+                            {{/if_eq}}
 
                         </div>
                     </div>
