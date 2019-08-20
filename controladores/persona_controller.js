@@ -68,7 +68,7 @@ class persona_controller {
        var persona = models.persona;
        var cuenta= models.cuenta;
        
-       persona.findOne({where:{external_id:req.user.id},include: [{model: models.cuenta, as: 'cuenta'}]}).then(function(lalo){
+       persona.findAll({where:{external_id:req.user.id},include: [{model: models.cuenta, as: 'cuenta'}]}).then(function(lalo){
         if (lalo) {
             res.render('index', {
                 title: 'PELICULA', fragmento: 'Fragmentos/Persona/verPerfil', 
@@ -95,6 +95,20 @@ class persona_controller {
        }).error(function (error){});
    }
    
+
+   modificar(req, res){
+
+    var persona = models.persona;
+       persona.findOne({where:{external_id:req.user.id},include: [{model: models.cuenta, as: 'cuenta'}]}).then(function (result){
+        console.log(result);
+        result.nombres= req.body.nombresM,
+        result.fecha_nac= req.body.fecha_nacM,
+        result.edad= req.body.edadM,
+        result.save().then(function (sav){
+            res.redirect('/mi_perfil');
+        });
+       })
+   }
 
     
 }

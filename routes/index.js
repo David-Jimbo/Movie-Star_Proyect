@@ -137,4 +137,6 @@ router.get('/editarPelicula', function (req, res, next) {
 
 
 router.post('/guardar_persona', persona.guardar);
+
+router.post('/mi_perfil/modificar',auth,persona.modificar);
 module.exports = router;
