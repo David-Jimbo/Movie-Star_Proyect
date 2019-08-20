@@ -18,8 +18,13 @@ module.exports = function (passport) {
             if (cuenta) {
                 var userinfo = {
                     id: cuenta.persona.external_id,                    
-                    nombre: cuenta.persona.apellidos + " " + cuenta.persona.nombres,
-                    rol: cuenta.persona.rol.tipo                    
+                    nombre: cuenta.persona.apellidos,
+                    apellido: cuenta.persona.nombres,
+                    cedula: cuenta.persona.cedula,
+                    edad: cuenta.persona.edad,
+                    fecha_nac: cuenta.persona.fecha_nac,
+                    rol: cuenta.persona.rol.tipo,
+                    correo:cuenta.correo                    
                 };
                 console.log(userinfo);
                 done(null, userinfo);

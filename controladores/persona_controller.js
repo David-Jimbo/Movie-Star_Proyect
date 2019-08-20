@@ -26,7 +26,7 @@ class persona_controller {
                        req.flash('error','La cedula ya existe, ingrese otra');
                        res.redirect('/registrarse');
                     }else{
-                       rol.findOne({ where: { tipo: 'administrador' } }).then(rolU => {
+                       rol.findOne({ where: { tipo: 'usuario' } }).then(rolU => {
                            var generateHash = function (clave) {
                                return bcrypt.hashSync(clave, bcrypt.genSaltSync(saltRounds), null);
                            }
@@ -64,6 +64,36 @@ class persona_controller {
        
     }
 
+   informacion(req,res){
+       var persona = models.persona;
+       var cuenta= models.cuenta;
+       
+       persona.findOne({where:{external_id:req.user.id},include: [{model: models.cuenta, as: 'cuenta'}]}).then(function(lalo){
+        if (lalo) {
+            res.render('index', {
+                title: 'PELICULA', fragmento: 'Fragmentos/Persona/verPerfil', 
+                lista:lalo,
+                sesion:true,
+                
+                msg: {
+                    error: req.flash('error'),
+                    info: req.flash('ok')
+                },
+                nombre:req.user.nombre,
+                apellido:req.user.apellido,
+                cedula:req.user.cedula,
+                edad:req.user.edad,
+                fecha_nac:req.user.fecha_nac,
+                correo:req.user.correo,
+                
+                
+
+            });
+            console.log(lalo);
+            
+        }
+       }).error(function (error){});
+   }
    
 
     

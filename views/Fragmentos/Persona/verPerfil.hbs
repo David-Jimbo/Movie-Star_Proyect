@@ -15,22 +15,23 @@
         <div class="col-sm-12">
             <h2>Informacion de mi perfil</h2>
             <div class="row">
+                
                 <div class="col-sm-5">
                     <div class="tabs">
                         <div>
                             <div class="field-wrap">
                                 <label for="nombres">Nombres</label>
                                 <input type="text" placeholder="Nombres" name="nombres" id="nombres"
-                                    class="login__input" />
+                                    class="login__input" value="{{nombre}}" readonly/>
                             </div><br>
                             <div>
                                 <label for="">Apellidos</label>
                                 <input type="text" placeholder="Apellidos" name="apellidos" id="apellidos"
-                                    class="login__input" />
+                                    class="login__input" value="{{apellido}}" readonly/>
                             </div><br>
                             <div>
                                 <label for="">Cedula de identidad</label>
-                                <input type="text" placeholder="CI" name="cedula" id="cedula" class="login__input" />
+                                <input type="text" placeholder="CI" name="cedula" id="cedula" class="login__input" value="{{cedula}}" readonly />
                             </div><br>
                         </div>
                     </div>
@@ -42,20 +43,21 @@
                             <div>
                                 <label for="">Fecha de nacimiento</label>
                                 <input type="date" placeholder="Fecha de nacimiento" name="fechaNacimiento"
-                                    id="fechaNacimiento" class="login__input" />
+                                    id="fechaNacimiento" class="login__input" value="{{fecha_nac}}" readonly/>
                             </div><br>
                             <div>
                                 <label for="">Edad</label>
-                                <input type="text" placeholder="Edad" name="edad" id="edad" class="login__input"
+                                <input type="text" placeholder="Edad" name="edad" id="edad" class="login__input" value="{{edad}}"
                                     readonly />
                             </div><br>
                             <div>
                                 <label for="">Correo electronico</label>
-                                <input type="email" placeholder="Email" name="email" id="email" />
+                                <input type="email" placeholder="Email" name="email" id="email" value="{{correo}}"/>
                             </div><br>
                         </div>
                     </div>
                 </div>
+                
             </div>
             <div class="form" style="text-align: right">
                 <a type='button' href="/editar_perfil" id="reg" class="btn btn-success" >Editar mi perfil</a>

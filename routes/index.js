@@ -77,7 +77,7 @@ router.get('/rol', function (req, res) {
     if (req.user.rol === 'administrador') {
         res.redirect('/peliculas');
     } else if (req.user.rol === 'usuario') {
-        res.redirect('/test');
+        res.redirect('/mi_perfil');
     }
 });
 ///////
@@ -92,9 +92,8 @@ router.get('/registrarse', function (req, res, next) {
     res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/registrar', msg: { error: req.flash('error'), ok: req.flash('info') } });
 });
 
-router.get('/mi_perfil', function (req, res, next) {
-    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/verPerfil' });
-});
+router.get('/mi_perfil',auth,persona.informacion);
+
 
 router.get('/editar_perfil', function (req, res, next) {
     res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/editarPerfil' });
