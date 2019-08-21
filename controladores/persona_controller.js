@@ -102,6 +102,7 @@ class persona_controller {
        persona.findOne({where:{external_id:req.user.id},include: [{model: models.cuenta, as: 'cuenta'}]}).then(function (result){
         console.log(result);
         result.nombres= req.body.nombresM,
+        result.apellidos= req.body.apellidosM,
         result.fecha_nac= req.body.fecha_nacM,
         result.edad= req.body.edadM,
         result.save().then(function (sav){

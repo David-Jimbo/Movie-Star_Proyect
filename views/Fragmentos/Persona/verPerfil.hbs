@@ -1,3 +1,4 @@
+<script src="js/Utiles.js"></script>
 <script>
     function cargarModal(external, nombre, apellido, fecha_nac, edad, cedula){
         console.log(nombre);
@@ -11,6 +12,13 @@
         
         
     }
+     //funcion que nos permite calcular la edad a partir de la fecha de nacimiento
+    $(document).ready(function () {
+        $("#fecha_nacM").change(function () {  //  funcion que se ejecuta al momento que el valor de la fecha de naciemiento cambia
+            var edad = calcularEdad($("#fecha_nacM").val());
+            $("#edadM").val(edad);
+        })
+    });
     </script>
 <div id="content_hero" style="background-image: url(images/hero-contact.jpg)">
 
