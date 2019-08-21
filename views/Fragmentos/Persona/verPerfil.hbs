@@ -1,5 +1,5 @@
 <script src="js/Utiles.js"></script>
-<script>
+<script type="text/javascript">
     function cargarModal(external, nombre, apellido, fecha_nac, edad, cedula){
         console.log(nombre);
         console.log(external);
@@ -19,6 +19,33 @@
             $("#edadM").val(edad);
         })
     });
+
+    $(function () {
+
+
+        $.validator.addMethod("soloLetras", function (value, element) {
+            return this.optional(element) || /^[a-zA-Z\s]+$/i.test(value);
+        }, "Solo letras");
+
+        
+
+        $("#editar").validate({
+            rules: {
+                nombresM: {
+                    required: true,
+                    soloLetras: true
+                },
+                apellidosM: {
+                    required: true,
+                    soloLetras: true
+                },
+                
+                fecha_nacM: {
+                    required: true
+                }
+            }
+        });
+    })
     </script>
 <div id="content_hero" style="background-image: url(images/hero-contact.jpg)">
 
@@ -102,7 +129,7 @@
                     </div>
                     <div class="modal-body">
                         <!-- .................................form.............................. -->
-                        <form id="f_login" method="POST" action="/mi_perfil/modificar">
+                        <form id="editar" method="POST" action="/mi_perfil/modificar">
                             <input type="hidden" name="external" value="0"/>
                             <div class="form-group">
                                 <label>Nombres</label>
@@ -127,7 +154,7 @@
                             <div class="form-group">
                                 <label >Edad</label>
                                 <input type="text" class="form-control" id="edadM" name="edadM"
-                                    placeholder="Ingrese su edad">
+                                    placeholder="Ingrese su edad" readonly>
                             </div>
                             <div style="text-align: center">
                                 <button type="submit" class="btn btn-success" value="submit">Ingresar</button>

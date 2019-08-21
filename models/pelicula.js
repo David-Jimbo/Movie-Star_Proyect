@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
     estado: DataTypes.BOOLEAN
    
   }, {freezeTableName: true});
-  pelicula.hasMany(models.horario, { foreignKey: 'id_pelicula', as: 'horario' });
+
+  pelicula.associate = function (models) {
+    pelicula.hasMany(models.horario, { foreignKey: 'id_pelicula', as: 'horario' });
+
+  };
   return pelicula;
 };
