@@ -96,7 +96,7 @@ router.get('/mi_perfil',auth,persona.informacion);
 
 
 router.get('/editar_perfil', function (req, res, next) {
-    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/editarPerfil' });
+    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/editarPerfil' ,sesion:true,rol:req.user.rol});
 });
 
 router.get('/peliculas', Pelicula.listar_peli);
@@ -127,7 +127,7 @@ router.post('/guardar_peli', Pelicula.guardar_pelicula);
 //router.get('/peliculas/ver', Pelicula.listar_peli);
 
 router.get('/verPelicula', function (req, res, next) {
-    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Peliculas/verPelicula' });
+    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Peliculas/verPelicula' ,sesion:true,rol:req.user.rol});
 });
 
 router.get('/editarPelicula', function (req, res, next) {
