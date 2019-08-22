@@ -15,26 +15,18 @@ class pelicula_controller {
                 res.render('index', {
                     title: 'PELICULA', fragmento: 'Fragmentos/Peliculas/verTodas', 
                     lista:pelicula,
-                    
+                    sesion: req.user,
                     msg: {
                         error: req.flash('error'),
                         info: req.flash('ok')
                     }
-                    
-
                 });
                 console.log(pelicula);
-                
             }
         }).error(function (error) {
             res.send(error);
         });
-
     }
-
-    
-
- 
 
     guardar_pelicula(req, res){
         Pelicula.findAll({ where: { nombre_peli: req.body.nombre_peli } }).then(function (resultado){
@@ -57,17 +49,14 @@ class pelicula_controller {
                 };
 
                 Pelicula.create(peli).then(function (resul){
-                    req.flash('ok', 'se ha guardado');
+                    req.flash('info','Se ha guardado la pelocula correctamente');
                     res.redirect('/peliculas'); 
                 }).error(function (error){
                     res.send(error);
                 });
             }   
-
         });
     }
-
-    
 }
 
 module.exports = pelicula_controller;

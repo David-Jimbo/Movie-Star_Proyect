@@ -90,25 +90,32 @@
 
     <!-- Main content -->
     <div class="container section small-padding">
-
         <form id="register-form" class="login" method="POST" action="/guardar_peli">
 
+            <div>
+                {{#if error2 }}
+                    <div class="label label-danger" style="font-size: 18px" id="err">
+                        {{error2}}
+                    </div>
+                {{/if}}
+            </div><br><br>
+            
             <div class="field-wrap">
-                 {{#if_eq msg 'undefined'}}
-                {{ else }}
-                {{#if_eq msg.error 'undefined'}}
+                {{#if_eq msg 'undefined'}}
                     {{ else }}
-                    <div class="label label-danger" style="font-size: 18px">
-                        {{msg.error}}
-                    </div>
+                    {{#if_eq msg.error 'undefined'}}
+                        {{ else }}
+                        <div class="label label-danger" style="font-size: 18px">
+                            {{msg.error}}
+                        </div>
+                    {{/if_eq}}
+                    {{#if_eq msg.ok 'undefined'}}
+                        {{ else }}
+                        <div class="label label-success" style="font-size: 18px">
+                            {{msg.ok}}
+                        </div>
+                    {{/if_eq}}
                 {{/if_eq}}
-                {{#if_eq msg.ok 'undefined'}}
-                    {{ else }}
-                    <div class="label label-success" style="font-size: 18px">
-                        {{msg.ok}}
-                    </div>
-                {{/if_eq}}
-            {{/if_eq}}
 
                 <input type="hidden" value="0" id="external" name="external" />
                 <div>
@@ -128,7 +135,7 @@
                 </div><br>
                 <div>
                     <label for="">Fecha de lanzamiento</label>
-                    <input type="date" placeholder="" name="fecha" id="fecha"  value="" />
+                    <input type="date" placeholder="" name="fecha" id="fecha" value="" />
                 </div><br>
                 <div>
                     <label for="">Protagonista/s</label>
@@ -155,7 +162,7 @@
                     <label for="">Estreno</label>
                     <select name="proyeccion" id="proyeccion">
                         <option value="">-------Eliga una opcion--------</option>
-                        
+
                         <option value="1">SI</option>
                         <option value="0">NO
                         </option>

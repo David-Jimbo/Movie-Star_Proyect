@@ -1,5 +1,5 @@
-<script>
-    function cargarModal(external, nombre, apellido, fecha_nac, edad, cedula){
+<script type="text/javascript"> 
+    function cargarModal(external, nombre, apellido, fecha_nac, edad, cedula) {
         console.log(nombre);
         console.log(external);
         $("#external").val(external);
@@ -8,10 +8,37 @@
         $("#fecha_nacM").val(fecha_nac);
         $("#edadM").val(edad);
         $("#cedulaM").val(cedula);
-        
-        
     }
-    </script>
+
+    $(function () {
+            $.validator.addMethod("soloLetras", function (value, element) {
+                return this.optional(element) || /^[a-zA-Z\s]+$/i.test(value);
+            }, "Solo letras");
+
+            $.validator.addMethod("cedula", function (value, element) {
+                return this.optional(element) || validarCedula(value);
+            }, "Cedula no valida");
+
+            $("#f_editar").validate({
+                rules: {
+                    nombresM: {
+                        required: true,
+                        soloLetras: true
+                    },
+                    apellidosM: {
+                        required: true,
+                        soloLetras: true
+                    },
+                    fechanacM: {
+                        required: true
+                    },
+                    edadM: {
+                        required: true
+                    }
+                }
+            });
+        })
+</script>
 <div id="content_hero" style="background-image: url(images/hero-contact.jpg)">
 
     <div class="container">
@@ -24,111 +51,128 @@
     </div>
 </div>
 
+<br><br><div style="text-align: center">
+    {{#if error}}
+        <div class="label label-danger" style="font-size: 18px" id="err">
+            {{error}}
+        </div>
+    {{/if}}
+    {{#if info}}
+        <div class="label label-success" style="font-size: 18px" id="err">
+            {{info}}
+        </div>
+    {{/if}}
+</div>
+
 <div class="container section news">
     <div class="row">
         <div class="col-sm-12">
             <h2>Informacion de mi perfil</h2>
             <div class="row">
                 {{#each lista}}
-                <div class="col-sm-5">
-                    <div class="tabs">
-                        <div>
-                            <div class="field-wrap">
-                                <label for="nombres">Nombres</label>
-                                <input type="text" placeholder="Nombres" name="nombres" id="nombres"
-                                    class="login__input" value="{{this.nombres}}" readonly/>
-                            </div><br>
+                    <div class="col-sm-5">
+                        <div class="tabs">
                             <div>
-                                <label for="">Apellidos</label>
-                                <input type="text" placeholder="Apellidos" name="apellidos" id="apellidos"
-                                    class="login__input" value="{{this.apellidos}}" readonly/>
-                            </div><br>
-                            <div>
-                                <label for="">Cedula de identidad</label>
-                                <input type="text" placeholder="CI" name="cedula" id="cedula" class="login__input" value="{{this.cedula}}" readonly />
-                            </div><br>
+                                <div class="field-wrap">
+                                    <label for="nombres">Nombres</label>
+                                    <input type="text" placeholder="Nombres" name="nombres" id="nombres"
+                                        class="login__input" value="{{this.nombres}}" readonly />
+                                </div><br>
+                                <div>
+                                    <label for="">Apellidos</label>
+                                    <input type="text" placeholder="Apellidos" name="apellidos" id="apellidos"
+                                        class="login__input" value="{{this.apellidos}}" readonly />
+                                </div><br>
+                                <div>
+                                    <label for="">Cedula de identidad</label>
+                                    <input type="text" placeholder="CI" name="cedula" id="cedula" class="login__input"
+                                        value="{{this.cedula}}" readonly />
+                                </div><br>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-sm-5 col-sm-push-2">
-                    <div class="tabs ">
-                        <div>
+                    <div class="col-sm-5 col-sm-push-2">
+                        <div class="tabs ">
                             <div>
-                                <label for="">Fecha de nacimiento</label>
-                                <input type="date" placeholder="Fecha de nacimiento" name="fechaNacimiento"
-                                    id="fechaNacimiento" class="login__input" value="{{this.fecha_nac}}" readonly/>
-                            </div><br>
-                            <div>
-                                <label for="">Edad</label>
-                                <input type="text" placeholder="Edad" name="edad" id="edad" class="login__input" value="{{this.edad}}"
-                                    readonly />
-                            </div><br>
-                            <div>
-                                <label for="">Correo electronico</label>
-                                <input type="email" placeholder="Email" name="email" id="email" value="{{this.cuenta.correo}}"/>
-                            </div><br>
+                                <div>
+                                    <label for="">Fecha de nacimiento</label>
+                                    <input type="date" placeholder="Fecha de nacimiento" name="fechaNacimiento"
+                                        id="fechaNacimiento" class="login__input" value="{{this.fecha_nac}}" readonly />
+                                </div><br>
+                                <div>
+                                    <label for="">Edad</label>
+                                    <input type="text" placeholder="Edad" name="edad" id="edad" class="login__input"
+                                        value="{{this.edad}}" readonly />
+                                </div><br>
+                                <div>
+                                    <label for="">Correo electronico</label>
+                                    <input type="email" placeholder="Email" name="email" id="email"
+                                        value="{{this.cuenta.correo}}" />
+                                </div><br>
+                            </div>
+                        </div>
+                        <div class="form" style="text-align: right">
+                            <a type='button' href="#" data-toggle="modal" data-target="#Modal"
+                                onclick="cargarModal('{{this.external_id}}','{{this.nombres}}','{{this.apellidos}}','{{this.fecha_nac}}','{{this.edad}}','{{this.cedula}}')"
+                                class="btn btn-info">Editar mi perfil</a>
                         </div>
                     </div>
-                     <div class="form" style="text-align: right">
-                <a type='button' href="#" data-toggle="modal" data-target="#Modal" onclick="cargarModal('{{this.external_id}}','{{this.nombres}}','{{this.apellidos}}','{{this.fecha_nac}}','{{this.edad}}','{{this.cedula}}')" class="btn btn-info">Editar mi perfil</a>
-            </div>
-                </div>
                 {{/each}}
             </div>
-           
+
         </div>
     </div>
 </div>
 </div>
-<!------------- MODAL -->
-  <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title" id="exampleModalLabel">Iniciar sesion</h4>
-                    </div>
-                    <div class="modal-body">
-                        <!-- .................................form.............................. -->
-                        <form id="f_login" method="POST" action="/mi_perfil/modificar">
-                            <input type="hidden" name="external" value="0"/>
-                            <div class="form-group">
-                                <label>Nombres</label>
-                                <input type="text" class="form-control" id="nombresM" name="nombresM"
-                                    placeholder="Ingrese sus nombres">
-                            </div>
-                            <div class="form-group">
-                                <label >Apellidos</label>
-                                <input type="text" class="form-control" id="apellidosM" name="apellidosM"
-                                    placeholder="Ingrese sus apellidos">
-                            </div>
-                             <div class="form-group">
-                                <label>Cedula</label>
-                                <input type="text" class="form-control" id="cedulaM" name="cedulaM"
-                                    placeholder="Ingrese su cedula" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label >Fecha de nacimiento</label>
-                                <input type="date" class="form-control" id="fecha_nacM" name="fecha_nacM"
-                                    placeholder="Ingrese su edad">
-                            </div>
-                            <div class="form-group">
-                                <label >Edad</label>
-                                <input type="text" class="form-control" id="edadM" name="edadM"
-                                    placeholder="Ingrese su edad">
-                            </div>
-                            <div style="text-align: center">
-                                <button type="submit" class="btn btn-success" value="submit">Ingresar</button>
-                                <span></span>
-                                <button type="submit" class="btn btn-warning" value="submit">Cancelar</button>
-                            </div>
 
-                        </form>
+<!--- MODAL -->
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="exampleModalLabel">Iniciar sesion</h4>
+            </div>
+            <div class="modal-body">
+
+                <!-- .................................form.............................. -->
+                <form id="f_editar" method="POST" action="/mi_perfil/modificar">
+                    <input type="hidden" name="external" value="0" />
+                    <div class="form-group">
+                        <label>Nombres</label>
+                        <input type="text" class="form-control" id="nombresM" name="nombresM"
+                            placeholder="Ingrese sus nombres">
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label>Apellidos</label>
+                        <input type="text" class="form-control" id="apellidosM" name="apellidosM"
+                            placeholder="Ingrese sus apellidos">
+                    </div>
+                    <div class="form-group">
+                        <label>Cedula</label>
+                        <input type="text" class="form-control" id="cedulaM" name="cedulaM"
+                            placeholder="Ingrese su cedula" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha de nacimiento</label>
+                        <input type="date" class="form-control" id="fecha_nacM" name="fecha_nacM"
+                            placeholder="Ingrese su edad">
+                    </div>
+                    <div class="form-group">
+                        <label>Edad</label>
+                        <input type="text" class="form-control" id="edadM" name="edadM" placeholder="Ingrese su edad">
+                    </div>
+                    <div style="text-align: center">
+                        <button type="submit" class="btn btn-success" value="submit">Ingresar</button>
+                        <span></span>
+                        <button type="reset" class="btn btn-warning" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                    </div>
+
+                </form>
             </div>
         </div>
+    </div>
+</div>

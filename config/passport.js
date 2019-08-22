@@ -42,11 +42,7 @@ module.exports = function (passport) {
             },
             function (req, email, password, done) {
                 var Cuenta = cuenta;
-
-                
-
                 var isValidPassword = function (userpass, password){
-                    
                     return bcrypt.compareSync(  password, userpass);
                 }
                 

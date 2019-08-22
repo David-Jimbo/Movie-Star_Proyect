@@ -29,10 +29,10 @@ app.engine(
     defaultLayout: "",
     layoutsDir: "",
     partialsDir: ["views"],
-    helpers: {
+    helpers: {  
       if_eq: function (a, b, opts) {
         var n = typeof a;
-        if (n == b && n.length > 0 ) {
+        if (a == b ) {
           return opts.fn(this);
         } else {
           return opts.inverse(this);
