@@ -15,10 +15,6 @@
                 return this.optional(element) || /^[a-zA-Z\s]+$/i.test(value);
             }, "Solo letras");
 
-            $.validator.addMethod("cedula", function (value, element) {
-                return this.optional(element) || validarCedula(value);
-            }, "Cedula no valida");
-
             $("#f_editar").validate({
                 rules: {
                     nombresM: {
