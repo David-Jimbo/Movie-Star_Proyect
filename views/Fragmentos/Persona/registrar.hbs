@@ -10,8 +10,6 @@
         })
     });
     $(function () {
-
-
         $.validator.addMethod("soloLetras", function (value, element) {
             return this.optional(element) || /^[a-zA-Z\s]+$/i.test(value);
         }, "Solo letras");

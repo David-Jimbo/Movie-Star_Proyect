@@ -1,0 +1,55 @@
+<div class="modal-content">
+    <div id="content_hero" style="background-image: url(images/hero-contact.jpg)">
+        <div class="container">
+            <div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0"
+                data-translatey="100">
+                <div class="col-md-9">
+
+                    <h1>Gestion de horarios :)</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<style type="text/css">
+    #cal {
+        margin: 0px;
+        padding: 0px;
+        height: 100%;
+        overflow: hidden;
+    }
+</style>
+
+<script type="text/javascript" charset="uft-8">
+    function init() {
+        scheduler.config.touch = "force";
+        scheduler.config.multi_day = true;
+
+        scheduler.init('scheduler_here', new Date(2018, 0, 1), "week");
+        scheduler.load("/common/events.json");
+
+    }
+</script>
+
+    <div class="container section small-padding">
+        
+        <div onload="init();" id='cal'>
+            <div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
+                <div class="dhx_cal_navline">
+                    <div class="dhx_cal_prev_button">&nbsp;</div>
+                    <div class="dhx_cal_next_button">&nbsp;</div>
+                    <div class="dhx_cal_today_button"></div>
+                    <div class="dhx_cal_date"></div>
+                    <div class="dhx_cal_tab" name="day_tab" style="right:204px;"></div>
+                    <div class="dhx_cal_tab" name="week_tab" style="right:140px;"></div>
+                    <div class="dhx_cal_tab" name="month_tab" style="right:76px;"></div>
+                </div>
+                <div class="dhx_cal_header">
+                </div>
+                <div class="dhx_cal_data">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

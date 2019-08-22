@@ -664,7 +664,7 @@ hr.space-40 {
   bottom: 0;
   left: 0;
   display: block;
-  width: 100%;
+  width: 100% ;
   height: 2px;
   content: "";
   background-image: linear-gradient(to right, #fbbd61, #ec7532);
@@ -679,7 +679,7 @@ hr.space-40 {
   z-index: 0;
   display: block;
   visibility: hidden;
-  width: 100%;
+  /*width: 100%; */
   padding: 0;
   -webkit-transition: all 0.25s ease-in-out;
   -moz-transition: all 0.25s ease-in-out;

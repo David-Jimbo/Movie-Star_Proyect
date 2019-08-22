@@ -1,19 +1,42 @@
+<script type="text/javascript">
+    //var n = $.noConflict(true);
+    $(document).ready(function () {
+        dias();
+        var x = diaSemana();
+        $('#fechaHoy').text(x);
+
+    });
+
+    function dias() {
+        var day_of_week = new Date().getDay();
+        var list = ['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'];
+        var sorted_list = list.slice(day_of_week).concat(list.slice(0, day_of_week));
+        console.log(sorted_list);
+        var html = '<li><a href="#' + sorted_list[0] + '">Hoy</a></li>'
+        for (var i = 1; i < sorted_list.length; i++) {
+            html += '<li><a href="#' + sorted_list[i] + '">' + sorted_list[i] + '</a></li>'
+        }
+        html += '<li class="date"><span id="fechaHoy"></span></li>'
+        $('#lista').html(html)
+
+        return (sorted_list)
+    }
+
+    function diaSemana() {
+        var date = new Date();
+        //let date = new Date(x.value.replace(/-+/g, '/'));
+        let options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        };
+        return (date.toLocaleDateString('es-MX', options));
+    }
+</script>
+
+
 <div id="content_hero" style="background-image: url(images/hero-whats-on.jpg)">
-  {{#if_eq msg 'undefined'}}
-                {{ else }}
-                {{#if_eq msg.error 'undefined'}}
-                    {{ else }}
-                    <div class="label label-danger" style="font-size: 18px">
-                        {{msg.error}}
-                    </div>
-                {{/if_eq}}
-                {{#if_eq msg.ok 'undefined'}}
-                    {{ else }}
-                    <div class="label label-success" style="font-size: 18px">
-                        {{msg.ok}}
-                    </div>
-                {{/if_eq}}
-            {{/if_eq}}
 
     <div class="container">
         <div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0"
@@ -34,55 +57,59 @@
                 <i class="material-icons">search</i>
             </div>
             <div class="tabs movies">
-                <ul>
-                    <li><a href="#mon">Mon</a></li>
-                    <li><a href="#tue">Tue</a></li>
-                    <li><a href="#wed">Today</a></li>
-                    <li><a href="#thu">Thu</a></li>
-                    <li><a href="#fri">Fri</a></li>
-                    <li><a href="#sat">Sat</a></li>
-                    <li><a href="#sun">Sun</a></li>
-                    <li class="date"><span>Wednesday, 8 March</span></li>
+                <ul id='lista'>
+
                 </ul>
-                <div id="mon">
-                     {{#each lista}}
-                    <div class="row movie-tabs">
-                        <div class="col-md-2 col-sm-3">
-                            <a href="single-movie.html">
-                                <img src="images/movie-6.jpg" alt="Movie title" />
-                            </a>
-                        </div>
-                        <div class="col-md-10 col-sm-9">
-                            
-                            <span class="title">{{this.genero}}</span>
-                            <h3 class="no-underline">{{this.nombre_peli}}</h3>
-                            <p>{{this.sinopsis}}
-                            </p>
-                            <p><a href="news-single.html" class="arrow-button">Full synopsis</a></p>
-                            <div class="row">
-                                <div class="col-md-8 col-sm-9">
-                                    <hr class="space-10" />
-                                    <span class="viewing-times">
-                                        <i class="material-icons">access_time</i>
-                                        Viewing times
-                                    </span>
-                                    <span class="time past">14:45</span>
-                                    <span class="time">18:30</span>
-                                    <span class="time">20:30</span>
-                                    <span class="time">24:45</span>
-                                </div>
-                                <div class="col-md-4 col-sm-3 running-time">
-                                    <hr class="space-10" />
-                                    {{this.duracion}} 
-                                    <span class="certificate">{{this.clasificacion}}</span>
+
+                <div id="lunes">
+                    {{#each lista}}
+                        <div class="row movie-tabs">
+                            <div class="col-md-2 col-sm-3">
+                                <a href="single-movie.html">
+                                    <img src="images/movie-6.jpg" alt="Movie title" />
+                                </a>
+                            </div>
+                            <div class="col-md-10 col-sm-9">
+                                <span class="title">{{this.genero}}</span>
+                                <h3 class="no-underline">{{this.nombre_peli}}</h3>
+                                <p>{{this.sinopsis}}
+                                </p>
+                                <p><a href="news-single.html" class="arrow-button">Full synopsis</a></p>
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-9">
+                                        <hr class="space-10" />
+                                        <span class="viewing-times">
+                                            <i class="material-icons">access_time</i>
+                                            Viewing times
+                                        </span>
+                                        <span class="time past">14:45</span>
+                                        <span class="time">18:30</span>
+                                        <span class="time">20:30</span>
+                                        <span class="time">24:45</span>
+                                    </div>
+                                    <div class="col-md-4 col-sm-3 running-time">
+                                        <hr class="space-10" />
+                                        {{this.duracion}}
+                                        <span class="certificate">{{this.clasificacion}}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                                                {{/each}}
+                    {{/each}}
 
                 </div>
-                
+                <div id="martes">
+                </div>
+                <div id="miercoles">
+                </div>
+                <div id="jueves">
+                </div>
+                <div id="viernes">
+                </div>
+                <div id="sabado">
+                </div>
+                <div id="domingo">
+                </div>
             </div>
         </div>
     </div>

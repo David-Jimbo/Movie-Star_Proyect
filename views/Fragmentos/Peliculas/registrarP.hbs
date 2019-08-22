@@ -76,7 +76,6 @@
 
 <div class="modal-content">
     <div id="content_hero" style="background-image: url(/images/hero-contact.jpg)">
-
         <div class="container">
             <div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0"
                 data-translatey="100">
@@ -99,24 +98,8 @@
                     </div>
                 {{/if}}
             </div><br><br>
-            
-            <div class="field-wrap">
-                {{#if_eq msg 'undefined'}}
-                    {{ else }}
-                    {{#if_eq msg.error 'undefined'}}
-                        {{ else }}
-                        <div class="label label-danger" style="font-size: 18px">
-                            {{msg.error}}
-                        </div>
-                    {{/if_eq}}
-                    {{#if_eq msg.ok 'undefined'}}
-                        {{ else }}
-                        <div class="label label-success" style="font-size: 18px">
-                            {{msg.ok}}
-                        </div>
-                    {{/if_eq}}
-                {{/if_eq}}
 
+            <div class="field-wrap">
                 <input type="hidden" value="0" id="external" name="external" />
                 <div>
                     <label for="nombre">Nombre de la pelicula</label>

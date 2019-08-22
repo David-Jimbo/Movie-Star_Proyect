@@ -39,3 +39,11 @@ function calcularEdad(fecha) {
     console.log("TIENES: " + edad + " ANIOS")
     return edad;
 }
+
+function dia() {
+    var dia = $("#fecha");
+    // var date = new Date().getDay();
+    let date = new Date(dia.value.replace(/-+/g, '/').getDay());
+    var dias = new Array('domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado')
+    alert(dias[date])
+}

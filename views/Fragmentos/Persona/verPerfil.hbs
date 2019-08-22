@@ -1,4 +1,12 @@
-<script type="text/javascript"> 
+<script src="js/Utiles.js"></script>
+
+<script type="text/javascript">
+     $(document).ready(function () {
+            $("#fecha_nacM").change(function () {  //  funcion que se ejecuta al momento que el valor de la fecha de naciemiento cambia
+                var edad = calcularEdad($("#fecha_nacM").val());
+                $("#edadM").val(edad);
+            })
+        });
     function cargarModal(external, nombre, apellido, fecha_nac, edad, cedula) {
         console.log(nombre);
         console.log(external);
@@ -25,7 +33,7 @@
                         required: true,
                         soloLetras: true
                     },
-                    fechanacM: {
+                    fecha_nacM: {
                         required: true
                     },
                     edadM: {
@@ -48,14 +56,14 @@
 </div>
 
 <br><br><div style="text-align: center">
-    {{#if error}}
+    {{#if error2}}
         <div class="label label-danger" style="font-size: 18px" id="err">
-            {{error}}
+            {{error2}}
         </div>
     {{/if}}
-    {{#if info}}
+    {{#if info2}}
         <div class="label label-success" style="font-size: 18px" id="err">
-            {{info}}
+            {{info2}}
         </div>
     {{/if}}
 </div>
@@ -159,7 +167,7 @@
                     </div>
                     <div class="form-group">
                         <label>Edad</label>
-                        <input type="text" class="form-control" id="edadM" name="edadM" placeholder="Ingrese su edad">
+                        <input type="text" class="form-control" id="edadM" name="edadM" placeholder="Ingrese su edad" readonly>
                     </div>
                     <div style="text-align: center">
                         <button type="submit" class="btn btn-success" value="submit">Ingresar</button>

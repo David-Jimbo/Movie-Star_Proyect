@@ -15,11 +15,7 @@ class pelicula_controller {
                 res.render('index', {
                     title: 'PELICULA', fragmento: 'Fragmentos/Peliculas/verTodas', 
                     lista:pelicula,
-                    sesion: req.user,
-                    msg: {
-                        error: req.flash('error'),
-                        info: req.flash('ok')
-                    }
+                    sesion: req.user
                 });
                 console.log(pelicula);
             }
@@ -33,7 +29,7 @@ class pelicula_controller {
             if(resultado.length >0){
                 //res.send('El correo ya existe, ingrese otro');
                 req.flash('error','hey chaval...la pelicula ya existe, ingrese otro');
-                res.redirect('/admin/peliculas/nueva');
+                res.redirect('/peliculas/nueva');
             }else{
                 var peli = {
                     nombre_peli: req.body.nombre_peli,

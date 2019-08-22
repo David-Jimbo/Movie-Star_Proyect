@@ -1,20 +1,150 @@
-<script type="text/javascript">
-    $(function () {
-        $("#form1").validate({
-            rules: {
-                txt1: {
-                    required: true,
-                    maxlength: 10
-                }
-            },
-            messages: {
-                txt1: {
-                    required: " required",
-                    maxlength: jQuery.format("Limited to {0} characters!")
-                }
+<script type="text/javascript" src="js/Utiles.js"></script>
+<script>
+
+    function diaSemana() {
+        var x = document.getElementById("fecha");
+        let date = new Date(x.value.replace(/-+/g, '/'));
+        var dia = date.getDay();
+        let options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        };
+        var dias = new Array('domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado')
+        console.log(date.toLocaleDateString('es-MX', options));
+        console.log(dias[dia])
+
+
+        var dayss = [['domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado'],
+        ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'],
+        ['martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo', 'lunes'],
+        ['miercoles', 'jueves', 'viernes', 'sabado', 'domingo', 'lunes', 'martes'],
+        ['jueves', 'viernes', 'sabado', 'domingo', 'lunes', 'martes', 'miercoles'],
+        ['viernes', 'sabado', 'domingo', 'lunes', 'martes', 'miercoles', 'jueves'],
+        ['sabado', 'domingo', 'lunes', 'martes', 'miercoles', 'jueves', 'viernes']];
+    
+    var fecha = $('#fecha').val()
+    var day_of_week = new Date(fecha).getDay();
+    var list =  ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
+   var sorted_list = list.slice(day_of_week).concat(list.slice(0, day_of_week));
+   console.log(sorted_list);
+    }
+
+    function fec() {
+        with (document.semanaRef) {
+            fecha = new Date();
+            fecha.setDate(dia.value)
+            fecha.setMonth(mes.value - 1)
+            fecha.setYear(anio.value)
+            if (fecha.getDay() == 0) {//aca va el domingo
+                domingo.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                lunes.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                martes.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                miercoles.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                jueves.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                viernes.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                sabado.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
             }
-        });
-    });
+            if (fecha.getDay() == 1) {//aca va el lunes
+                lunes.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                martes.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                miercoles.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                jueves.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                viernes.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                sabado.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                domingo.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+            }
+            if (fecha.getDay() == 2) {//aca va el martes
+                martes.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                miercoles.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                jueves.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                viernes.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                sabado.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                domingo.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                lunes.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+            }
+            if (fecha.getDay() == 3) {//aca va el miercoles
+                miercoles.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                jueves.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                viernes.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                sabado.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                domingo.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                lunes.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                martes.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+            }
+            if (fecha.getDay() == 4) {//aca va el jueves
+                jueves.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                viernes.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                sabado.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                domingo.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                lunes.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                martes.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                miercoles.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+            }
+            if (fecha.getDay() == 5) {//aca va el viernes
+                viernes.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                sabado.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                domingo.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                lunes.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                martes.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                miercoles.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                jueves.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+            }
+            if (fecha.getDay() == 6) {//aca va el sabado
+                sabado.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                domingo.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                lunes.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                martes.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                miercoles.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                jueves.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+                fecha.setDate(fecha.getDate() + 1)
+                viernes.value = fecha.getDate() + "/" + mes.value + "/" + fecha.getYear()
+            }
+        }
+        delete fecha
+    }
 </script>
 
 <div id="content_hero" style="background-image: url(images/hero-contact.jpg)">
@@ -31,10 +161,20 @@
 
 <!-- Main content -->
 <div class="container section small-padding">
+    <form id="register-form" class="login" method="POST" action="guardar_persona">
+        <div class="field-wrap">
 
-    <form id="form1" action="" method="get">
-        <input type="text" id="txt1" name="txt1" />
-        <br>
-        <input type="submit" id="sub1" value="submit" />
+            <div>
+                {{#if error2 }}
+                    <div class="label label-danger" style="font-size: 18px" id="err">
+                        {{error2}}
+                    </div>
+                {{/if}}
+            </div><br><br>
+            <div>
+                <label for="">Ingrese su fecha de nacimiento</label>
+                <input type="date" name="fecha" id="fecha" required onchange="diaSemana();">
+            </div><br>
     </form>
+
 </div>

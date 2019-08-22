@@ -23,7 +23,7 @@ jQuery(function ($) {
 	// Tabs
 	if ($(".tabs").length > 0){
 		$('.tabs').tabs();
-		$('.tabs.movies').tabs({ active: 2 });
+		$('.tabs.movies').tabs({ active: 0 });
 	}
 
 	// Accordion

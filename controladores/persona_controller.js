@@ -69,8 +69,8 @@ class persona_controller {
                 title: 'Mi Perfil', fragmento: 'Fragmentos/Persona/verPerfil', 
                 lista:lalo,
                 sesion: req.user,
-                error: req.flash('error'),
-                info: req.flash('info') ,
+                error2: req.flash('error'),
+                info2: req.flash('info') ,
                 
                 nombre:req.user.nombre,
                 apellido:req.user.apellido,

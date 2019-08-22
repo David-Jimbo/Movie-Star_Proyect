@@ -29,11 +29,19 @@
             src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/localization/messages_es.js"></script>
         <script src="/js/jquery.tagsinput.js"></script>
         <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="/css/jquery.tagsinput.css" />
+        <script src="/codebase/dhtmlxscheduler.js?v=5.2.3" type="text/javascript" charset="utf-8"></script>
+        <link rel="stylesheet" href="/codebase/dhtmlxscheduler_material.css?v=5.2.3" type="text/css"
+            charset="utf-8">
+
+        <!-- Terrace skin -->
+        <link rel="stylesheet" href="/codebase/dhtmlxscheduler_material.css?v=5.2.3" type="text/css"
+            charset="utf-8">
+
+        <!-- Quick info extension -->
+        <script src="/codebase/ext/dhtmlxscheduler_quick_info.js?v=5.2.3" type="text/javascript"
+            charset="utf-8"></script>
 
         <script type="text/javascript">
-            //var n = $.noConflict(true);
-            console.log("el valor es: " + $("#err").text());
             $(document).ready(function () {
                 $("#fechaNacimiento").change(function () {  //  funcion que se ejecuta al momento que el valor de la fecha de naciemiento cambia
                     var edad = calcularEdad($("#fechaNacimiento").val());
@@ -74,19 +82,8 @@
                                         <a href="#">
                                             <i data-toggle="modal" data-target="#exampleModal">Iniciar sesion</i>
                                         </a>
-                                        {{#if error }}
-                                            <div class="label label-danger" style="font-size: 18px" id="err">
-                                                {{error}}
-                                            </div>
-                                        {{/if}}
-                                        {{#if info }}
-                                        <div class="label label-success" style="font-size: 18px">
-                                            {{info}}
-                                        </div>
-                                        {{/if}}
                                     </div>
                                     {{ else }}
-
                                     <div class="search">
                                         <a href="/cerrar_sesion">
                                             <i id="cerrar_sesion">Cerrar sesion</i>
@@ -94,11 +91,26 @@
                                     </div>
                                     <div class="tel">
                                         <a href="/mi_perfil">
-                                            <i style="color: blueviolet !important">{{sesion.apellido}} {{sesion.nombre}} </i>
+                                            <i>Bienvenido</i>
+                                            <i style="color: blueviolet !important"> {{sesion.apellido}}
+                                                {{sesion.nombre}} </i>
                                         </a>
                                     </div>
                                 {{/if_eq}}
-
+                                {{#if error }}
+                                    <div class="tel">
+                                        <div class="label label-danger" style="font-size: 18px" id="err">
+                                            {{error}}
+                                        </div>
+                                    </div>
+                                {{/if}}
+                                {{#if info }}
+                                    <div class="tel">
+                                        <div class="label label-success" style="font-size: 18px">
+                                            {{info}}
+                                        </div>
+                                    </div>
+                                {{/if}}
                             </div>
                         </div>
                     </div>
@@ -125,27 +137,38 @@
                             <li class="dropdown">
                                 <a href="/peliculas">Peliculas</a>
                                 {{#if_eq sesion.rol 'administrador'}}
-                                <ul class="dropdown-menu">
-                                    <li><a href="/admin/peliculas/nueva">Añadir pelicula</a></li>
-                                </ul>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/peliculas/nueva">Añadir pelicula</a></li>
+                                    </ul>
                                 {{/if_eq}}
                             </li>
-                            <li>
-                                <a href="#">Shortcodes</a>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#">News</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">News single</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="/mi_perfil">Mi perfil</a>
-                            </li>
+                            {{#if_eq sesion.rol 'administrador'}}
+                                <li>
+                                    <a href="/gestionHorarios">Gestionar Horarios</a>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#">Salas</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Añadir salas</a></li>
+                                        <li><a href="#">Ver Salas disponibles</a></li>
+                                    </ul>
+                                </li>
+                            {{/if_eq}}
+                            {{#if_eq sesion undefined}}
+                                {{else}}
+                                    <li class="dropdown">
+                                        <a href="">Mi Cuenta</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="/mi_perfil">Mi perfil</a></li>
+                                            <li><a href="#">Historial de compras</a></li>
+                                        </ul>
+                                    </li>
+                            {{/if_eq}}
                         </ul>
                     </div>
                 </div>
             </div>
+
 
 
             <!-- Modal -->
