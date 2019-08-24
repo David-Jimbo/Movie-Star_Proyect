@@ -32,7 +32,7 @@
 
             editable: true,
             eventLimit: true, // allow "more" link when too many events
-            events: '',
+            events: 'http://localhost:3000/listaH',
             eventClick: function (info) {
                 $('#titulo').html(info.event.title);
                 console.log(info)
@@ -43,7 +43,7 @@
             }
 
         });
-        $('#cargarD').change(function () {
+        $('#salasD').change(function () {
             if (!$('#salasD').val() == "") {
                 calendar.render();
             }else{
@@ -101,11 +101,11 @@
                             {{/each}}
                             </option>
                     </select>
-                </div>
+               </div> <!--
                 <br>
                 <div class="form" style="text-align: right">
                     <button class="btn btn-info" id="cargarD">Cargar Datos</button>
-                </div> 
+                </div> -->
         </form>
 
         <br><br>
