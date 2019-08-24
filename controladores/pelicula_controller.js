@@ -15,9 +15,10 @@ class pelicula_controller {
                 res.render('index', {
                     title: 'PELICULA', fragmento: 'Fragmentos/Peliculas/verTodas', 
                     lista:pelicula,
+                    info: req.flash('info'),
                     sesion: req.user
                 });
-                console.log(pelicula);
+               // console.log(pelicula);
             }
         }).error(function (error) {
             res.send(error);

@@ -29,17 +29,18 @@
             src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.10.0/localization/messages_es.js"></script>
         <script src="/js/jquery.tagsinput.js"></script>
         <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
-        <script src="/codebase/dhtmlxscheduler.js?v=5.2.3" type="text/javascript" charset="utf-8"></script>
-        <link rel="stylesheet" href="/codebase/dhtmlxscheduler_material.css?v=5.2.3" type="text/css"
-            charset="utf-8">
 
-        <!-- Terrace skin -->
-        <link rel="stylesheet" href="/codebase/dhtmlxscheduler_material.css?v=5.2.3" type="text/css"
-            charset="utf-8">
+        <link href='/packages/core/main.css' rel='stylesheet' />
+        <link href='/packages/daygrid/main.css' rel='stylesheet' />
+        <link href='/packages/timegrid/main.css' rel='stylesheet' />
+        <link href='/packages/list/main.css' rel='stylesheet' />
+        <script src='/packages/core/main.js'></script>
+        <script src='/packages/interaction/main.js'></script>
+        <script src='/packages/daygrid/main.js'></script>
+        <script src='/packages/timegrid/main.js'></script>
+        <script src='/packages/list/main.js'></script>
 
-        <!-- Quick info extension -->
-        <script src="/codebase/ext/dhtmlxscheduler_quick_info.js?v=5.2.3" type="text/javascript"
-            charset="utf-8"></script>
+        <script src='/packages/core/locales/es.js'></script>
 
         <script type="text/javascript">
             $(document).ready(function () {
@@ -157,7 +158,7 @@
                             {{#if_eq sesion undefined}}
                                 {{else}}
                                     <li class="dropdown">
-                                        <a href="">Mi Cuenta</a>
+                                        <a href="#">Mi Cuenta</a>
                                         <ul class="dropdown-menu">
                                             <li><a href="/mi_perfil">Mi perfil</a></li>
                                             <li><a href="#">Historial de compras</a></li>

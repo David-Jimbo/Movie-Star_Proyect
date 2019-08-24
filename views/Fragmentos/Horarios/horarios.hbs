@@ -1,3 +1,81 @@
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            plugins: ['interaction', 'dayGrid', 'timeGrid', 'list'],
+            header: {
+                left: 'prev,next today, MiBoton',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+            },
+            customButtons: {
+                MiBoton: {
+                    text: "Añadir Nuevo",
+                    click: function () {
+                        alert('accion del boton xd')
+                    }
+                }
+            },
+            dateClick: function (info) {
+                var a = 'Valor seleccionado: ' + info.dateStr + '\nVista actual: ' + info.view.type;
+                //alert(a);
+                //$('#addHora').modal();
+            },
+            selectable: true,
+            locale: 'es',
+            defaultDate: '2019-08-12',
+            navLinks: true, // can click day/week names to navigate views
+
+            weekNumbers: true,
+            weekNumbersWithinDays: true,
+            weekNumberCalculation: 'ISO',
+
+            editable: true,
+            eventLimit: true, // allow "more" link when too many events
+            events: '',
+            eventClick: function (info) {
+                $('#titulo').html(info.event.title);
+                console.log(info)
+                $('#descripcionE').html(info.event.extendedProps.descripcion);
+                $('#addHora').modal();
+                // change the border color just for fun
+                info.el.style.borderColor = 'red';
+            }
+
+        });
+        $('#cargarD').change(function () {
+            if (!$('#salasD').val() == "") {
+                calendar.render();
+            }else{
+                calendar.destroy();
+            }
+        })
+
+        $(function () {
+            $('#cargar').validate({
+                rules: {
+                    salasD: {
+                        required: true
+                    }
+                }
+            })
+        })
+
+    });
+</script>
+<style>
+    body {
+        padding: 0;
+        
+        font-size: 14px;
+    }
+
+    #calendar {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+</style>
+
 <div class="modal-content">
     <div id="content_hero" style="background-image: url(images/hero-contact.jpg)">
         <div class="container">
@@ -11,45 +89,74 @@
         </div>
     </div>
 
-<style type="text/css">
-    #cal {
-        margin: 0px;
-        padding: 0px;
-        height: 100%;
-        overflow: hidden;
-    }
-</style>
-
-<script type="text/javascript" charset="uft-8">
-    function init() {
-        scheduler.config.touch = "force";
-        scheduler.config.multi_day = true;
-
-        scheduler.init('scheduler_here', new Date(2018, 0, 1), "week");
-        scheduler.load("/common/events.json");
-
-    }
-</script>
-
     <div class="container section small-padding">
-        
-        <div onload="init();" id='cal'>
-            <div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
-                <div class="dhx_cal_navline">
-                    <div class="dhx_cal_prev_button">&nbsp;</div>
-                    <div class="dhx_cal_next_button">&nbsp;</div>
-                    <div class="dhx_cal_today_button"></div>
-                    <div class="dhx_cal_date"></div>
-                    <div class="dhx_cal_tab" name="day_tab" style="right:204px;"></div>
-                    <div class="dhx_cal_tab" name="week_tab" style="right:140px;"></div>
-                    <div class="dhx_cal_tab" name="month_tab" style="right:76px;"></div>
+        <form action="#" id="cargar">
+            <div class="field-wrap">
+                <div>
+                    <label for="">Salas disponibles</label>
+                    <select name="salasD" id="salasD">
+                        <option value="">--------Eliga una opcion--------</option>
+                        {{# each salas}}
+                            <option value="{{this.external_id}}">{{this.nombre_sala}}</option>
+                            {{/each}}
+                            </option>
+                    </select>
                 </div>
-                <div class="dhx_cal_header">
-                </div>
-                <div class="dhx_cal_data">
+                <br>
+                <div class="form" style="text-align: right">
+                    <button class="btn btn-info" id="cargarD">Cargar Datos</button>
+                </div> 
+        </form>
+
+        <br><br>
+
+        <body>
+            <div id='calendar'></div>
+            <!-- Modal -->
+            <div class="modal fade" id="addHora" tabindex="-1" role="dialog" aria-labelledby="addHoraLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="reset" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="addHoraLabel">Ver info</h4>
+                        </div>
+                        <div class="modal-body">
+
+                            <!-- .................................form.............................. -->
+                            <form id="f_loginn" method="POST" action="#">
+                                <div id="titulo"></div>
+                                <div id="descripcionE"></div>
+
+                                <!--
+                                <div class="form-group">
+                                    <label>Direccion de Email</label>
+                                    <input type="email" class="form-control" id="emailFormm" name="correo"
+                                        placeholder="Ingrese su direccion de correo">
+                                    <small id="emailHelp" class="form-text text-muted">Nunca compartiremos su correo
+                                        electrónico con nadie
+                                        más.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Contraseña</label>
+                                    <input type="password" class="form-control" id="claveFormm" name="clave"
+                                        placeholder="Contraseña">
+                                </div>
+                                -->
+                                <div style="text-align: center">
+                                    <button type="submit" class="btn btn-success" value="submit">Registrar</button>
+                                    <button type="reset" class="btn btn-warning" data-dismiss="modal"
+                                        aria-label="Close">Cancelar</button>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
+        </body>
     </div>
 </div>

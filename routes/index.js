@@ -96,4 +96,11 @@ router.get('/test', function (req, res, next) {
     res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/test', sesion: req.user });
 });
 
+router.get('/n', function(req,res, next){
+    res.render('layout')
+})
+
+router.get('/nuevaSala', horarioC.nueva_sala)
+router.get('/nuevoH', horarioC.nuevo_horario)
+router.get('/listaH', horarioC.cargarHorarios)
 module.exports = router;
