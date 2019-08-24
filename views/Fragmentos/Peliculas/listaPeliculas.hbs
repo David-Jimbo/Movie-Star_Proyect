@@ -1,3 +1,16 @@
+<link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="srylesheet">
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+ <script>
+        var nc = $.noConflict(true);
+
+    nc(document).ready( function () {
+    nc('#tpelicula').DataTable();
+} );
+</script>
+
+ 
+
 <div id="content_hero" style="background-image: url(/images/hero-contact.jpg)">
 
     <div class="container">
@@ -11,7 +24,8 @@
     </div>
 </div>
 <div class="container">
-    <table class="table table-striped">
+   
+    <table class="table table-striped" id="tpelicula">
         <thead>
             <tr>
                 <th scope="col">Nro</th>
@@ -66,17 +80,179 @@
                     {{this.duracion}}
                 </td>
                 <td>
-                    <a href="" class="fas fa-edit"></a>></a>
+                    <a href="" data-toggle="modal" data-target="#Modal" data-whatever="@mdo"><i class="fas fa-edit" onclick="cargarModal('{{this.external_id}}','{{this.nombre_peli}}','{{this.genero}}','{{this.director}}','{{this.fecha_lanzamiento}}','{{this.protagonistas}}','{{this.clasificacion}}',' {{this.estado}}','{{this.duracion}}','{{this.sinopsis}}')"></i></a>
+
+                    <a href="" data-toggle="modal" onclick="cargarModalF('{{this.external_id}}')"
+                        data-target="#exampleModal_foto" data-whatever="@mdo"><i class="fas fa-image"></i></a>
                 </td>
-                <td>
-                    <a href="" class="fas fa-image"></a>></a>
-                </td>
+                
+                    
+                
 
 
             </tr>
 
             {{/each}}
-        </tbody>Modificar
+        </tbody>
     </table>
 
+</div>
+<script>
+
+
+    function cargarModal(external,  nombre_peli, genero,director,fecha,protagonistas, clasificacion,estado,duracion,sinopsis) {
+
+        console.log(external);
+        $("#externalP").val(external);
+        $("#generoM").val(genero);
+        $("#nombre_peli_M").val(nombre_peli);
+        
+        $("#directorM").val(director);
+        $("#fechaM").val(fecha);
+        $("#protagonistasM").val(protagonistas);
+        $("#clasificacionM").val(clasificacion);
+        $("#proyeccionM").val(estado);
+        $("#duracionM").val(duracion);
+        $("#sinopsisM").val(sinopsis);
+
+    }
+
+    function cargarModalF(external){
+        $("#external").val(external);
+
+    }
+
+</script>
+<--- MODAL PARA SUBIR PORTADA-->
+    <div class="fade modal" id="exampleModal_foto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="background: #D6D6D6">
+
+                <div class="page-item " role="alert" style="margin-top: 4%">
+                    <center>
+                        <a class="navbar-brand text-brand" href="#" style="font-size: 40px">Subir<span class="color-b">
+                                Foto</span></a>
+                    </center>
+                </div>
+                <div class="modal-header"></div>
+                <div class="modal-body">
+                    <form id="formulario" method="POST" enctype="multipart/form-data" action="/guardar/portada">
+
+                        <div class=" form-group row">
+                            <div class="  col-sm-10">
+                                <center>
+
+                                    <input type="hidden" value="0" id="external" name="external" />
+
+                                    <input type="file" class="btn-lg btn-link " name="foto" id="foto">
+
+                                </center>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger col-md-6" data-dismiss="modal"> Cancelar
+                            </button>
+                            <button type="submit" class="btn btn-success col-md-6"> Cargar </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--- MODAL -->
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="exampleModalLabel">Iniciar sesion</h4>
+            </div>
+            <div class="modal-body">
+
+                <!-- .................................form.............................. -->
+                <form id="f_editar" method="POST" action="/peliculas/lista/modificar">
+                    <input type="hidden" name="externalP" id="externalP" value="0" />
+                    <div>
+                    <label for="nombre">Nombre de la pelicula</label>
+                    <input type="text" placeholder="Nombre de la pelicula" name="nombre_peli_M" id="nombre_peli_M"
+                        class="login__input" />
+                </div><br>
+                <div>
+                    <label for="">Genero/s</label>
+                    <input type="text" data-role="tagsinput" placeholder="Genero/s de la pelicula" id="generoM"
+                        name="generoM">
+                </div><br>
+                <div>
+                    <label for="">Director/es</label>
+                    <input type="text" placeholder="Nombre del Director" name="directorM" id="directorM"
+                        data-role="tagsinput" value="" />
+                </div><br>
+                <div>
+                    <label for="">Fecha de lanzamiento</label>
+                    <input type="date" placeholder="" name="fechaM" id="fechaM" value="" />
+                </div><br>
+                <div>
+                    <label for="">Protagonista/s</label>
+                    <input type="text" placeholder="Protagonistas de la pelicula" name="protagonistasM"
+                        id="protagonistasM" data-role="tagsinput" />
+                </div><br>
+                <div>
+                    <label for="">Clasificacion</label>
+                    <select name="clasificacionM" id="clasificacionM">
+                        <option value="">-------Eliga una opcion--------</option>
+                        <option value="AA">“AA” - Aptas para todo público que tengan atractivo infantil y sean
+                            comprensibles para niños menores de siete años
+                            de edad </option>
+                        <option value="A">"A" - Aptas para todo publico</option>
+                        <option value="B">"B" - Películas para adolescentes de 12 años en adelante.</option>
+                        <option value="B15">"B15" - Película no recomendable para menores de 15 años de edad.</option>
+                        <option value="C">"C" - Películas para adultos de 18 años en adelante.</option>
+                        <option value="D">"D" - Películas para adultos, con sexo explícito, lenguaje procaz o alto grado
+                            de violencia.
+                        </option>
+                    </select>
+                </div><br>
+                <div>
+                    <label for="">Estreno</label>
+                    <select name="proyeccionM" id="proyeccionM">
+                        <option value="">-------Eliga una opcion--------</option>
+
+                        <option value="1">SI</option>
+                        <option value="0">NO
+                        </option>
+                    </select>
+                </div><br>
+                <div>
+                    <label for="">Duracion (en minutos)</label>
+                    <input type="number" placeholder="Duracion de la pelucula" name="duracionM" id="duracionM"
+                        class="login__input" />
+                </div><br>
+                <div>
+                    <label for="">Descripcion</label>
+                    <textarea placeholder="Descripcion de le pelicula" rows="5" name="sinopsisM" id="sinopsisM"
+                        class="login__input"></textarea>
+                </div><br>
+
+
+                <!--<div>
+                <label for="">Trailer</label>
+                <input type="text" placeholder="Ingrese el link del trailer" name="trailer" id="trailer"
+                    class="login__input" />
+            </div><br>-->
+            <div style="text-align: center">
+                        <button type="submit" class="btn btn-success" value="submit">Actualizar</button>
+                        <span></span>
+                        <button type="reset" class="btn btn-warning" data-dismiss="modal" aria-label="Close">Cancelar</button>
+                    </div>
+            </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

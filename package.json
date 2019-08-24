@@ -30,6 +30,7 @@
         "passport-local": "^1.0.0",
         "sequelize": "^5.16.0",
         "sequelize-cli": "^5.5.0",
+        "tui-calendar": "^1.12.4",
         "uuidv4": "^4.0.0"
     }
 }

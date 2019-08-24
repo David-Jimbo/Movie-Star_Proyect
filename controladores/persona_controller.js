@@ -26,7 +26,7 @@ class persona_controller {
                        req.flash('error','La cedula ya existe, ingrese otra');
                        res.redirect('/registrarse');
                     }else{
-                       rol.findOne({ where: { tipo: 'administrador' } }).then(rolU => {
+                       rol.findOne({ where: { tipo: 'usuario' } }).then(rolU => {
                            var generateHash = function (clave) {
                                return bcrypt.hashSync(clave, bcrypt.genSaltSync(saltRounds), null);
                            }

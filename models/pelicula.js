@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     director: DataTypes.STRING,
     protagonistas:DataTypes.STRING,
     external_id: DataTypes.UUID,
+    trailer: DataTypes.STRING,
     estado: DataTypes.BOOLEAN
    
   }, {freezeTableName: true});

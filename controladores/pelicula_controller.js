@@ -21,7 +21,7 @@ class pelicula_controller {
               res.render('index', {
                     title: 'PELICULA', fragmento: 'Fragmentos/Peliculas/verTodas', 
                     lista:pelicula,
-                    sesion: req.user,
+                    sesion: req.user
                     
                     
                 });
@@ -43,8 +43,10 @@ class pelicula_controller {
                     sesion: req.user,
                     
                     
+                    info: req.flash('info'),
+                    sesion: req.user
                 });
-                console.log(pelicula);
+               // console.log(pelicula);
             }
         }).error(function (error) {
             res.send(error);
@@ -69,6 +71,7 @@ class pelicula_controller {
                         protagonistas: req.body.protagonistas,
                         estado: req.body.proyeccion,
                         portada:"sin portada",
+                        trailer:req.body.trailer,
                         external_id: uuidv4()
                 };
 
@@ -105,7 +108,7 @@ class pelicula_controller {
                             }, {where: {external_id: fields.external}}).then(function (updatedPelicula, created) {
                                 if (updatedPelicula) {
                                     req.flash('info', 'se subio correctamente chaval', false);
-                                    res.redirect('/peliculas');
+                                    res.redirect('/peliculas/lista');
                                     console.log(nombre + "----------------------");
                                 }
 
@@ -141,6 +144,26 @@ class pelicula_controller {
                 console.log('no se borro' + link);
             }
         });
+    }
+
+    modificar_pelicula(req, res){
+        Pelicula.findOne({where:{external_id:req.body.externalP}}).then(function (result){
+            
+        
+        result.nombre_peli= req.body.nombre_peli_M,
+        result.genero=req.body.generoM,
+        result.director=req.body.directorM,
+        result.fecha_lanzamiento=req.body.fechaM,
+        result.protagonistas=req.body.protagonistasM,
+        result.clasificacion=req.body.clasificacionM,
+        result.estado=req.body.proyeccionM,
+        result.duracion=req.body.duracionM,
+        result.sinopsis=req.body.sinopsisM,
+        result.save().then(function (sav){
+            req.flash('info', '  ha editado las peliculas correctamente');
+             res.redirect('/peliculas/lista');
+        });
+        }).error(function (error){});
     }
 }
 
