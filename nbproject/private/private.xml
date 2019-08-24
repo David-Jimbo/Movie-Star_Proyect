@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/root/Descargas/Movie-Star_Proyect/views/Fragmentos/Peliculas/verPelicula.hbs</file>
+            <file>file:/root/Descargas/Movie-Star_Proyect/controladores/persona_controller.js</file>
+            <file>file:/root/Descargas/Movie-Star_Proyect/app.js</file>
+            <file>file:/root/Descargas/Movie-Star_Proyect/controladores/pelicula_controller.js</file>
+            <file>file:/root/Descargas/Movie-Star_Proyect/views/Fragmentos/Peliculas/verTodas.hbs</file>
+            <file>file:/root/Descargas/Movie-Star_Proyect/routes/index.js</file>
+            <file>file:/root/Descargas/Movie-Star_Proyect/controladores/principal_controller.js</file>
+            <file>file:/root/Descargas/Movie-Star_Proyect/views/Fragmentos/principal.hbs</file>
+            <file>file:/root/Descargas/Movie-Star_Proyect/config/passport.js</file>
+            <file>file:/root/Descargas/Movie-Star_Proyect/controladores/horarios_controller.js</file>
+            <file>file:/root/Descargas/Movie-Star_Proyect/config/config.json</file>
+            <file>file:/root/Descargas/Movie-Star_Proyect/package.json</file>
+            <file>file:/root/Descargas/Movie-Star_Proyect/views/Fragmentos/Persona/verPerfil.hbs</file>
+        </group>
+    </open-files>
+</project-private>
