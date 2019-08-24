@@ -84,6 +84,7 @@ router.post('/guardar_peli', Pelicula.guardar_pelicula);
 router.get('/verPelicula', function (req, res, next) {
     res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Peliculas/verPelicula', sesion: req.user, rol: req.user.rol });
 });
+router.get('/peliculas/lista', auth, admin, Pelicula.tabla_peli);
 router.get('/editarPelicula', auth, admin,function (req, res, next) {
     res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Peliculas/editarPelicula' });
 });

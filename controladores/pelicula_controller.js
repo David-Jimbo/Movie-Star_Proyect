@@ -32,6 +32,25 @@ class pelicula_controller {
         });
     }
 
+    tabla_peli(req, res) {      
+        Pelicula.findAll({}).then(function (pelicula) {
+            if (pelicula) {
+               // res.send(pelicula);
+               
+              res.render('index', {
+                    title: 'PELICULA', fragmento: 'Fragmentos/Peliculas/listaPeliculas', 
+                    lista:pelicula,
+                    sesion: req.user,
+                    
+                    
+                });
+                console.log(pelicula);
+            }
+        }).error(function (error) {
+            res.send(error);
+        });
+    }
+
     guardar_pelicula(req, res){
         Pelicula.findAll({ where: { nombre_peli: req.body.nombre_peli } }).then(function (resultado){
             if(resultado.length >0){

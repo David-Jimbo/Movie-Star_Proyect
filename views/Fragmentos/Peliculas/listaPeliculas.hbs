@@ -1,0 +1,82 @@
+<div id="content_hero" style="background-image: url(/images/hero-contact.jpg)">
+
+    <div class="container">
+        <div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0"
+            data-translatey="100">
+            <div class="col-md-9">
+
+                <h1>Mi Pelicula</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Nro</th>
+                <th scope="col">Portada</th>
+                <th scope="col">Titulo</th>
+                <th scope="col">Genero/s</th>
+                <th scope="col">Director/es</th>
+                <th scope="col">Fecha de nacimiento</th>
+                <th scope="col">Sinopsis</th>
+                <th scope="col">Protagonistas</th>
+                <th scope="col">Clasificacion</th>
+                <th scope="col">Estreno</th>
+                <th scope="col">Duracion de la pelicula</th>
+                <th scope="col">Acciones</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {{#each lista}}
+            <tr>
+                <td>
+
+                </td>
+                <td>
+                    <img src="/imagenes/{{this.portada}}" width="100" height="100" />
+                </td>
+                <td>
+                    {{this.nombre_peli}}
+                </td>
+                <td>
+                    {{this.genero}}
+                </td>
+                <td>
+                    {{this.director}}
+                </td>
+                <td>
+                    {{this.fecha_lanzamiento}}
+                </td>
+                <td>
+                    {{this.sinopsis}}
+                </td>
+                <td>
+                    {{this.protagonistas}}
+                </td>
+                <td>
+                    {{this.clasificacion}}
+                </td>
+                <td>
+                    {{this.estado}}
+                </td>
+                <td>
+                    {{this.duracion}}
+                </td>
+                <td>
+                    <a href="" class="fas fa-edit"></a>></a>
+                </td>
+                <td>
+                    <a href="" class="fas fa-image"></a>></a>
+                </td>
+
+
+            </tr>
+
+            {{/each}}
+        </tbody>Modificar
+    </table>
+
+</div>
