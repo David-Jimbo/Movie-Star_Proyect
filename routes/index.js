@@ -20,6 +20,10 @@ var cuenta = new cuentaC()
 var pelicula = require('../controladores/pelicula_controller');
 var Pelicula = new pelicula();
 
+//sala controller
+var sala = require('../controladores/sala_controller');
+var Sala = new sala();
+
 //horarios controller
 var horario = require('../controladores/horarios_controller');
 var horarioC = new horario();
@@ -92,6 +96,14 @@ router.post('/peliculas/lista/modificar', auth,admin, Pelicula.modificar_pelicul
 
 //gestion de horarios
 router.get('/gestionHorarios', horarioC.listar_horarios)
+
+
+///SALAS
+router.get('/sala', auth,admin,function (req, res, next) {
+    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Sala/agrega_sala', error2: req.flash('error') });
+});
+
+router.post('/sala/agregar_sala', auth,admin, Sala.guardars);
 
 //---------pruebas---------------
 router.get('/test', function (req, res, next) {

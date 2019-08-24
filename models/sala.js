@@ -3,6 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const sala = sequelize.define('sala', {
     nombre_sala: DataTypes.STRING,
     nro_asientos: DataTypes.INTEGER,
+    estado:DataTypes.BOOLEAN,
     external_id: DataTypes.UUID
   }, { freezeTableName: true });
 
