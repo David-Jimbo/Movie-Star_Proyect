@@ -1,2 +1,4 @@
 /config/
 /node_modules/bcrypt/
+/nbproject/private/
+node_modules

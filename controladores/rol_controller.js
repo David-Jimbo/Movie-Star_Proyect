@@ -3,7 +3,7 @@
 var persona = require('../models/persona');
 var models = require('../models');
 var uuid = require('uuid');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 var sequelize = require('sequelize');
 const saltRounds = 8;
 function crear_roles(){

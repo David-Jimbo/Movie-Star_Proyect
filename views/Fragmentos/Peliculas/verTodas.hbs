@@ -66,7 +66,7 @@
                         <div class="row movie-tabs">
                             <div class="col-md-2 col-sm-3">
                                 <a href="single-movie.html">
-                                    <img src="images/movie-6.jpg" alt="Movie title" />
+                                    <img src="/imagenes/{{this.portada}}" alt="Movie title" />
                                 </a>
                             </div>
                             <div class="col-md-10 col-sm-9">
@@ -92,9 +92,22 @@
                                         {{this.duracion}}
                                         <span class="certificate">{{this.clasificacion}}</span>
                                     </div>
+                                      <a style="width: 50%" class="file btn btn-lg btn-primary" onclick="cargarModal('{{this.external_id}}','{{this.portada}}')" href="#" data-toggle="modal" data-target="#exampleModal_foto" data-whatever="@mdo"> <i class = " fa fa-user "> </i> Foto </a>
                                 </div>
                             </div>
                         </div>
+                    <script>
+
+                                
+                                 function cargarModal(external, foto) {
+        
+        console.log(external);
+        $("#external").val(external);
+        $("#external").val(external);
+       
+    }
+
+                            </script>
                     {{/each}}
 
                 </div>
@@ -110,6 +123,42 @@
                 </div>
                 <div id="domingo">
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class = "fade modal" id ="exampleModal_foto" tabindex = "-1" role = "dialog" aria-labelledby = "exampleModalLabel" aria-hidden = "true">
+    <div class = "modal-dialog" role = "document">
+        <div class = "modal-content" style="background: #D6D6D6">
+
+            <div class = "page-item " role = "alert" style="margin-top: 4%">
+                <center>
+                    <a class="navbar-brand text-brand" href="#" style="font-size: 40px">Subir<span class="color-b"> Foto</span></a>
+                </center>               
+            </div>
+            <div class = "modal-header"></div>
+            <div class = "modal-body">
+                <form id = "formulario" method = "POST" enctype = "multipart/form-data" action = "/guardar/portada">
+
+                    <div class = " form-group row">
+                        <div class = "  col-sm-10">
+                            <center>
+                                
+                                <input type = "hidden" value = "0" id = "external" name = "external" /> 
+                                
+                                <input type = "file" class = "btn-lg btn-link "  name = "foto" id = "foto">
+                               
+                            </center>
+                        </div>
+                    </div>
+
+                    <div class = "modal-footer">
+                        <button type = "button" class = "btn btn-danger col-md-6" data-dismiss = "modal"> Cancelar </button>
+                        <button type = "submit" class = "btn btn-success col-md-6"> Cargar </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

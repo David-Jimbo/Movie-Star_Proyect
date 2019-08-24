@@ -1,4 +1,4 @@
-var bcrypt = require('bcrypt'); //modulo para encriptar claves
+var bcrypt = require('bcrypt-nodejs'); //modulo para encriptar claves
 var models = require('./../models');
 var cuenta = models.cuenta;
 var persona = models.persona;

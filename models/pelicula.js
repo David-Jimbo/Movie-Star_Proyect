@@ -1,6 +1,7 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const pelicula = sequelize.define('pelicula', {
+    portada:DataTypes.STRING,
     nombre_peli: DataTypes.STRING,
     genero: DataTypes.STRING,
     fecha_lanzamiento: DataTypes.DATEONLY,

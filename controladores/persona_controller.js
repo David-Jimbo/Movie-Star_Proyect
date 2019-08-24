@@ -2,8 +2,8 @@
 
 //var persona = require('../models/persona');
 var models = require('../models');
-var uuid = require('uuid');
-var bcrypt = require('bcrypt');
+const uuidv4 = require('uuid/v4');
+var bcrypt = require('bcrypt-nodejs');
 var sequelize = require('sequelize');
 const saltRounds = 8;
 
@@ -26,7 +26,7 @@ class persona_controller {
                        req.flash('error','La cedula ya existe, ingrese otra');
                        res.redirect('/registrarse');
                     }else{
-                       rol.findOne({ where: { tipo: 'usuario' } }).then(rolU => {
+                       rol.findOne({ where: { tipo: 'administrador' } }).then(rolU => {
                            var generateHash = function (clave) {
                                return bcrypt.hashSync(clave, bcrypt.genSaltSync(saltRounds), null);
                            }
@@ -37,12 +37,12 @@ class persona_controller {
                                nombres: req.body.nombres,
                                fecha_nac: req.body.fechaNacimiento,
                                edad: req.body.edad,
-                               external_id: uuid.v4(),
+                               external_id: uuidv4(),
                                id_rol: rolU.id,
                                cuenta:{
                                    correo:req.body.email,
                                    clave:generateHash(req.body.clave),
-                                   external_id: uuid.v4(),
+                                   external_id: uuidv4(),
                                    estado:'true'
                                }
                            };

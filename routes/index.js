@@ -76,6 +76,7 @@ router.post('/mi_perfil/modificar', auth, persona.modificar);
 
 //--------------Peliculas-------------
 router.get('/peliculas', Pelicula.listar_peli);
+router.post('/guardar/portada', Pelicula.guardarPortada);
 router.get('/peliculas/nueva', auth, admin, function (req, res, next) {
     res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Peliculas/registrarP', sesion: req.user, error2: req.flash('error')});
 });

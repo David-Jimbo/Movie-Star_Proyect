@@ -6,8 +6,8 @@
         "start": "node ./bin/www"
     },
     "dependencies": {
-        "bcrypt": "^3.0.6",
-        "bcrypt-node": "^0.1.0",
+        "app-root-path": "^2.2.1",
+        "bcrypt-nodejs": "0.0.3",
         "body-parser": "^1.19.0",
         "connect-flash": "^0.1.1",
         "connect-handlebars": "^4.0.0",
@@ -18,6 +18,8 @@
         "express-formidable": "^1.2.0",
         "express-handlebars": "^3.1.0",
         "express-session": "^1.16.2",
+        "formidable": "^1.2.1",
+        "fs": "0.0.1-security",
         "handlebars": "^4.1.2",
         "hbs": "~4.0.4",
         "http-errors": "^1.7.3",
@@ -26,7 +28,7 @@
         "nodemon": "^1.19.1",
         "passport": "^0.4.0",
         "passport-local": "^1.0.0",
-        "sequelize": "^5.15.1",
+        "sequelize": "^5.16.0",
         "sequelize-cli": "^5.5.0",
         "uuidv4": "^4.0.0"
     }
