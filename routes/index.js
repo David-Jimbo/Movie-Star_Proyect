@@ -112,6 +112,10 @@ router.get('/horarios', auth,admin, horarioC.listar_horarios);
 router.get('/test', function (req, res, next) {
     res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/test', sesion: req.user });
 });
+//butacas
+router.get('/butacas', function (req, res, next) {
+    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Butacas/frm_butaca', sesion: req.user });
+});
 
 router.get('/n', function(req,res, next){
     res.render('layout')
