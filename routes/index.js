@@ -117,15 +117,6 @@ router.get('/test', function (req, res, next) {
     res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/test', sesion: req.user });
 });
 
-
-<<<<<<< HEAD
-//butacas
-router.get('/butacas', function (req, res, next) {
-    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Sala/butacas', sesion: req.user });
-});
-=======
->>>>>>> ff9a60cc80c21c8bd32e7b63d957df89878bba31
-
 router.get('/n', function(req,res, next){
     res.render('layout')
 })
