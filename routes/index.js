@@ -28,9 +28,7 @@ var Sala = new sala();
 var horario = require('../controladores/horarios_controller');
 var horarioC = new horario();
 
-//proyeccion controller
-var proyeccion = require('../controladores/proyeccion_controller');
-var Proyeccion = new proyeccion();
+
 
 //controla si las personas estan iniciadas sesion
 var auth = function middleWare(req, res, next) {
@@ -113,9 +111,12 @@ router.post('/sala/agregar_sala', auth,admin, Sala.guardars);
 router.get('/test', function (req, res, next) {
     res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/test', sesion: req.user });
 });
-//ptoyeccion
-router.get('/proyeccion', auth,admin, Proyeccion.listar);
-router.post('/proyeccion/guardar', auth,admin, Proyeccion.guardar);
+
+
+//butacas
+router.get('/butacas', function (req, res, next) {
+    res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Sala/butacas', sesion: req.user });
+});
 
 router.get('/n', function(req,res, next){
     res.render('layout')
