@@ -4,23 +4,21 @@ var models = require('../models');
 var Pelicula = models.pelicula;
 var Sala = models.sala;
 var Horario = models.horario;
-var uuid = require('uuid');
+const uuidv4 = require('uuid/v4');
 //var Sala = models.Sala;
 
 class horario_controller {
 
     listar_horarios(req, res) {
-        Pelicula.findAll({ where: { estado: true } }).then(function (pelicula) {
+        Pelicula.findAll().then(function (pelicula) {
             if (pelicula) {
-                Sala.findAll().then(function (salas) {
                     res.render('index', {
-                        title: 'horarios', fragmento: 'Fragmentos/Horarios/horarios',
+                        title: 'horarios', fragmento: 'Fragmentos/Horarios/lista',
                         listaPelis: pelicula,
-                        salas: salas,
+                        
                         sesion: req.user
                     });
-                }).error(function () {
-                })
+                
                 //console.log(pelicula);
             }
         }).error(function (error) {
@@ -28,56 +26,80 @@ class horario_controller {
         });
     }
 
-    nueva_sala(req, res) {
-        var salaD = {
-            nombre_sala: 'Sala 2',
-            nro_asientos: '90',
-            external_id: uuid.v4()
-        }
-        Sala.create(salaD).then(function () {
-            req.flash('info', ' Se ha guardado correctamente');
-            res.redirect('/');
-        }).error(function () {
-
-        })
-    }
+   
     nuevo_horario(req, res) {
-        var hor = {
-            fecha_inicio: '2019-08-23 18:00:00',
-            fecha_fin: '2019-08-23 20:30:00',
-            external_id: uuid.v4(),
-            id_pelicula: '3',
-            id_sala: '4'
-        }
-        Horario.create(hor).then(function () {
-            req.flash('info', ' El horario se ha guardado correctamente');
-            res.redirect('/');
-        }).error(function () {
+       Sala.findOne({ where: { external_id: req.body.external } }).then( function(sala)  {
+        Pelicula.findOne({ where: { external_id: req.body.peliculaM } }).then( function(peli)  {
+            var datosH = {
+                hora: req.body.inicioM,
+                fecha: req.body.fecha,
+                external_id: uuidv4(),
+                id_sala: sala.id,
+                id_pelicula: peli.id
+    
+    
+            }
+            Horario.create(datosH).then(function (resultG) {
+                req.flash('info', ' SLos horarios se han guardado correctamente');
+                res.redirect('/horarios');
+                //res.send(resultG);
+            }).error(function (error) {
+                res.redirect('/');
+                res.send(error);
+            });
+        }).error(function (error){});
 
-        })
+       
+       }).error(function (error){});
     }
 
    cargarHorarios(req, res) {
-        Horario.findAll({ include: [{ model: models.pelicula }, { model: models.sala }] }).then(function (lista) {
-            //console.log(lista)
-            //res.send(lista)
-            var listaRefinada = [];
-            if (lista.length > 0) {
-                for (var i = 0; i < lista.length; i++) {
-                    listaRefinada.push({
-                        'title': lista[i].pelicula.nombre_peli,
-                        'start': lista[i].fecha_inicio,
-                        'end': lista[i].fecha_fin
-                    })
-                }
-                //res.send(listaRefinada)
-                //console.log(listaRefinada)
-                res.json(listaRefinada);
-            }
+       /* Sala.findAll({include: [{model: models.horario, as: 'sala-horario'}]}).then(function (lista) {
+            res.render('index', {
+                title: 'horarios', fragmento: 'Fragmentos/Horarios/listar',
+                lista: lista,
+                sesion: req.user
+            });
+            console.log(lista)
         }).error(function () {
 
         })
-    }
+    }*/
+
+    Horario.findAll({include: [{model: models.sala},{model:models.pelicula}]}).then(function (lista) {
+        res.render('index', {
+            title: 'horarios', fragmento: 'Fragmentos/Horarios/listar',
+            lista: lista,
+            sesion: req.user
+        });
+        console.log(lista)
+    }).error(function () {
+
+    })
+
+    
+}
+ver_Pelicula(req,res){
+    Pelicula.findAll().then(function (pelicula) {
+
+        res.render('index', {
+            title: 'horarios', fragmento: 'Fragmentos/Horarios/peliculaHorario',
+            
+            sesion: req.user,
+            listap: pelicula,
+            error: req.flash('error'), 
+            info: req.flash('info')
+
+
+        })
+
+
+    }).error(function (error) { });
+    
+}
+Agregar_pelicula(req, res){
+    Pelicula.findOne({ where: { external_id: req.body.peliculas } }).then(function (pelicula) {}).error(function(error){});
+}
 
 }
 
