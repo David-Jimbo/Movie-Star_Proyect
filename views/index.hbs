@@ -145,13 +145,18 @@
                                 {{/if_eq}}
                             </li>
                             {{#if_eq sesion.rol 'administrador'}}
-                                <li>
+                                <li class="dropdown">
                                     <a href="/gestionHorarios">Gestionar Horarios</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/proyeccion">Proyeccion</a></li>
+                                        
+                                    </ul>
+                                    
                                 </li>
                                 <li class="dropdown">
                                     <a href="#">Salas</a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="#">Añadir salas</a></li>
+                                        <li><a href="/sala">Añadir salas</a></li>
                                         <li><a href="#">Ver Salas disponibles</a></li>
                                     </ul>
                                 </li>

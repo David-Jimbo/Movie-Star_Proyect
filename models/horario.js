@@ -7,8 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     }, { freezeTableName: true });
     horario.associate = function (models) {
         // associations can be defined here
-        horario.belongsTo(models.pelicula, { foreignKey: 'id_pelicula' });
-        horario.belongsTo(models.sala, { foreignKey: 'id_sala' });
+        //horario.belongsTo(models.pelicula, { foreignKey: 'id_pelicula' });
+        //horario.belongsTo(models.sala, { foreignKey: 'id_sala' });
     };
     return horario;
 };
