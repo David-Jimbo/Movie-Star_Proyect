@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
   }, { freezeTableName: true });
 
   sala.associate = function (models) {
-    sala.hasMany(models.horario, { foreignKey: 'id_sala', as: 'sala-horario' });
+   // sala.hasMany(models.horario, { foreignKey: 'id_sala', as: 'sala-horario' });
+    sala.hasMany(models.proyeccion, { foreignKey: 'id_sala', as: 'proyeccion' });
   };
   return sala;
 };
