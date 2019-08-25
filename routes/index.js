@@ -28,10 +28,6 @@ var Sala = new sala();
 var horario = require('../controladores/horarios_controller');
 var horarioC = new horario();
 
-<<<<<<< HEAD
-
-=======
->>>>>>> ff9a60cc80c21c8bd32e7b63d957df89878bba31
 
 //controla si las personas estan iniciadas sesion
 var auth = function middleWare(req, res, next) {
