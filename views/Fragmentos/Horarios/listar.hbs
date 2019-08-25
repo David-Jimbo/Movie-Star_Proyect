@@ -1,3 +1,14 @@
+<link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="srylesheet">
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+ <script>
+        var nc = $.noConflict(true);
+
+    nc(document).ready( function () {
+    nc('#htabla').DataTable();
+} );
+</script>
+
 <div id="content_hero" style="background-image: url(/images/hero-contact.jpg)">
 
     <div class="container">
@@ -12,7 +23,7 @@
 </div>
 <div class="container">
 
-    <table class="table table-striped" id="tpelicula">
+    <table id="htabla" class="table table-striped" id="tpelicula">
         <thead>
             <tr>
                 <th scope="col">Nro</th>
