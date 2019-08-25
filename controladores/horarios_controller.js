@@ -54,17 +54,7 @@ class horario_controller {
     }
 
    cargarHorarios(req, res) {
-       /* Sala.findAll({include: [{model: models.horario, as: 'sala-horario'}]}).then(function (lista) {
-            res.render('index', {
-                title: 'horarios', fragmento: 'Fragmentos/Horarios/listar',
-                lista: lista,
-                sesion: req.user
-            });
-            console.log(lista)
-        }).error(function () {
-
-        })
-    }*/
+       
 
     Horario.findAll({include: [{model: models.sala},{model:models.pelicula}]}).then(function (lista) {
         res.render('index', {

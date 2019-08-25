@@ -28,9 +28,6 @@ var Sala = new sala();
 var horario = require('../controladores/horarios_controller');
 var horarioC = new horario();
 
-//proyeccion controller
-var proyeccion = require('../controladores/proyeccion_controller');
-var Proyeccion = new proyeccion();
 
 //controla si las personas estan iniciadas sesion
 var auth = function middleWare(req, res, next) {
@@ -99,29 +96,28 @@ router.get('/editarPelicula', auth, admin,function (req, res, next) {
 router.post('/peliculas/lista/modificar', auth,admin, Pelicula.modificar_pelicula);
 
 //gestion de horarios
-router.get('/gestionHorarios', horarioC.listar_horarios)
 
 
 ///SALAS
 router.get('/sala', auth,admin,function (req, res, next) {
     res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Sala/agrega_sala', error2: req.flash('error') });
 });
-
+router.get('/sala/ver', auth,admin, Sala.lista_Sala);
+router.post('/sala/ver/agregarhorario', auth,admin, horarioC.nuevo_horario);
 router.post('/sala/agregar_sala', auth,admin, Sala.guardars);
+router.get('/horarios', auth,admin, horarioC.cargarHorarios);
+router.get('/horarios', auth,admin, horarioC.listar_horarios);
 
 //---------pruebas---------------
 router.get('/test', function (req, res, next) {
     res.render('index', { title: 'Movie Star', fragmento: 'Fragmentos/Persona/test', sesion: req.user });
 });
-//ptoyeccion
-router.get('/proyeccion', auth,admin, Proyeccion.listar);
-router.post('/proyeccion/guardar', auth,admin, Proyeccion.guardar);
+
+
 
 router.get('/n', function(req,res, next){
     res.render('layout')
 })
 
-router.get('/nuevaSala', horarioC.nueva_sala)
-router.get('/nuevoH', horarioC.nuevo_horario)
-router.get('/listaH', horarioC.cargarHorarios)
+
 module.exports = router;

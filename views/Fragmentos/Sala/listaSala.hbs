@@ -1,0 +1,128 @@
+<div id="content_hero" style="background-image: url(/images/hero-contact.jpg)">
+
+    <div class="container">
+        <div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0"
+            data-translatey="100">
+            <div class="col-md-9">
+
+                <h1>Salas</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+
+    <table class="table table-striped" id="tpelicula">
+        <thead>
+            <tr>
+                <th scope="col">Nro</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Asientos</th>
+                <th scope="col">Agregar cartelera</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            {{#each listas}}
+            <tr>
+                <td>
+                    {{this.id}}
+
+                </td>
+                <td>
+                    {{this.nombre_sala}}
+                </td>
+                <td>
+                    {{this.nro_asientos}}
+                </td>
+                <td>
+                    <a href="" data-toggle="modal" onclick="cargarModalF('{{this.external_id}}')" data-target="#Modal"
+                        data-whatever="@mdo" class="btn btn-warning">Agregar cartelera</a>
+
+                </td>
+            </tr>
+
+            {{/each}}
+        </tbody>
+    </table>
+
+</div>
+<script>
+    function cargarModalF(external) {
+        $("#external").val(external);
+
+    }
+</script>
+
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="exampleModalLabel">Registrar cartelera</h4>
+            </div>
+            <div class="modal-body">
+
+                <!-- .................................form.............................. -->
+                <form id="register-form" class="login" method="POST" action="/sala/ver/agregarhorario">
+                    <div class="field-wrap">
+
+                        <div>
+                            {{#if error2 }}
+                            <div class="label label-danger" style="font-size: 18px" id="err">
+                                {{error2}}
+                            </div>
+                            {{/if}}
+                        </div><br><label for="">Elija los horarios</label><br>
+                        <div>
+                            <input type="hidden" name="external" id="external" value="0" />
+
+                            <label for="">Hora de proyeccion</label>
+                            <select name="inicioM" id="inicioM">
+
+                                <option value="">-------Eliga una opcion--------</option>
+
+                                <option value="09:00">10:00</option>
+                                <option value="13:00">12:00</option>
+                                <option value="15:00">16:00</option>
+                                <option value="21:00">20:00</option>
+
+                                </option>
+                            </select>
+                            <label for="">Fecha de proyeccion</label>
+                            <input type="date" name="fecha" id="fecha" />
+
+                            <label for="">Seleccione Pelicula</label>
+                            <select name="peliculaM" id="peliculaM">
+
+                                <option value="">-------Eliga una opcion--------</option>
+                                {{#each listap}}
+                                <option value="{{this.external_id}}">{{this.nombre_peli}}</option>
+                                {{/each}}
+
+                                </option>
+                            </select>
+
+                        </div>
+                    </div>
+            </div>
+
+        </div>
+
+
+
+
+
+        <div class="form" style="text-align: right">
+            <br>
+            <a type='' id="reg" href="/" class="btn btn-danger" value="">Cancelar</a>
+            <button type='submit' id="reg" class="btn btn-success" value="submit">Registrarse</button>
+        </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
