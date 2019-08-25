@@ -13,23 +13,18 @@ var formidable = require('formidable');
 var Pelicula = models.pelicula;
 class pelicula_controller {
 
-    listar_peli(req, res) {      
-        Pelicula.findAll({}).then(function (pelicula) {
-            if (pelicula) {
-               // res.send(pelicula);
-               
-              res.render('index', {
-                    title: 'PELICULA', fragmento: 'Fragmentos/Peliculas/verTodas', 
-                    lista:pelicula,
-                    sesion: req.user
-                    
-                    
-                });
-                console.log(pelicula);
-            }
-        }).error(function (error) {
-            res.send(error);
-        });
+    listar_peli(req, res) { 
+        var Horario = models.horario;     
+        Horario.findAll({include: [{model:models.pelicula}]}).then(function (lista) {
+            res.render('index', {
+                title: 'horarios', fragmento: 'Fragmentos/Peliculas/verTodas',
+                lista: lista,
+                sesion: req.user
+            });
+            console.log(lista)
+        }).error(function () {
+    
+        })
     }
 
     tabla_peli(req, res) {      

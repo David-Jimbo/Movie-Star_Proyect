@@ -1,0 +1,54 @@
+<div id="content_hero" style="background-image: url(/images/hero-contact.jpg)">
+
+    <div class="container">
+        <div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0"
+            data-translatey="100">
+            <div class="col-md-9">
+
+                <h1>Cartelera</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+
+    <table class="table table-striped" id="tpelicula">
+        <thead>
+            <tr>
+                <th scope="col">Nro</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Hora</th>
+                <th scope="col">Sala</th>
+                <th scope="col">Pelicula</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            {{#each lista}}
+            <tr>
+                <td>
+
+                    {{this.id}}
+                </td>
+                <td>
+                    {{this.fecha}}
+                </td>
+                <td>
+                    {{this.hora}}
+                </td>
+                <td>
+                    {{this.sala.nombre_sala}}
+                </td>
+                <td>
+                    {{this.pelicula.nombre_peli}}
+                </td>
+                
+            </tr>
+
+            {{/each}}
+        </tbody>
+    </table>
+
+</div>
+
