@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = (sequelize, DataTypes) => {
   const cuenta = sequelize.define('cuenta', {
     correo: DataTypes.STRING,
