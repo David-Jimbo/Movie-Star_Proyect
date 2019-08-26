@@ -9,7 +9,19 @@ const saltRounds = 8;
 
 class persona_controller {
 
-    guardar(req, res){
+
+/**
+ * @memberof persona_controller
+ * guardar - METODO
+ * requerimos los modelos: cuenta y persona
+ * buscamos en cuenta su atributo email
+ * para verificar que el correo existe o no
+ * en persona junto con cuenta buscaremos cedula
+ * para verificar que la cedula existe o no
+ */
+
+
+guardar(req, res){
         var persona = models.persona;
         var cuenta = models.cuenta;
         var rol = models.rol;
@@ -60,6 +72,15 @@ class persona_controller {
         }).error(function (error){});
     }
 
+
+
+   /**
+    * @memberof persona_controller
+    * informacion - Metodo
+    * Crearemos una lista para mostrar los datos de la persona
+    * modelos requeridos: modelo y cuenta
+    * y guardamos los datos
+    */
    informacion(req,res){
        var persona = models.persona;
        var cuenta= models.cuenta;
@@ -83,8 +104,14 @@ class persona_controller {
        }).error(function (error){});
    }
    
+/**
 
-   modificar(req, res){
+ * @memberof persona_controller
+ *modificar - Metodo
+* repetimos el proceso como en pelicula
+para modificar los datos de persona
+ */
+modificar(req, res){
     var persona = models.persona;
        persona.findOne({where:{external_id:req.user.id},include: [{model: models.cuenta, as: 'cuenta'}]}).then(function (result){
         console.log(result);

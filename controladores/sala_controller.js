@@ -7,8 +7,18 @@ var Pelicula = models.pelicula;
 const uuidv4 = require('uuid/v4');
 class sala_controller {
 
-
-  lista_Sala(req,res){
+/**
+ *
+ *
+ * 
+ * @memberof sala_controller
+ * lista_Sala
+ * dentro de sala buscaremos en pelicula con su funcion
+ * y requerimos dos listas para tomar datos 
+ * de ambos modelos
+ * 
+ */
+lista_Sala(req,res){
     Sala.findAll().then(function (sala) {
 
       Pelicula.findAll().then(function (pelicula) {
@@ -30,6 +40,16 @@ class sala_controller {
       console.log('------------------------' + sala)
   }).error(function (error) { });
   }
+
+
+/**
+ * @memberof sala_controller
+ * guardars - Metodo
+ * dentro de sala se busca el nombre o titulo
+ * si la funcion es mayor a 0 
+ * significa que el nombre de la sala ya existe
+ * sino se guardara la sala con sus nuevos datos
+ */
 guardars(req,res){
     Sala.findAll({where:{nombre_sala:req.body.nsala}}).then(function(result){
   if(result > 0){

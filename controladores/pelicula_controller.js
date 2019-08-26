@@ -11,9 +11,25 @@ var extensiones = ["jpg", "png", "jpeg"];
 var formidable = require('formidable');
 
 var Pelicula = models.pelicula;
-class pelicula_controller {
 
-    listar_peli(req, res) { 
+
+
+class pelicula_controller {
+/**
+ *
+ *
+ * @param {*} req
+ * @param {*} res
+ * @memberof pelicula_controller
+ * listar _peli - metodo
+ * requerimos de horario (modelo)
+ * buscamos en el modelo horario incluido el modelo de pelicula
+ * para luego la funcion de listar
+ * utilizarla en la vista correspondiente
+ */
+
+
+listar_peli(req, res) { 
         var Horario = models.horario;     
         Horario.findAll({include: [{model:models.pelicula}]}).then(function (lista) {
             res.render('index', {
@@ -26,8 +42,14 @@ class pelicula_controller {
     
         })
     }
-
-    tabla_peli(req, res) {      
+/**
+ * @memberof pelicula_controller
+ * tabla_peli - metodo
+ * para crear una tabla 
+ * buscaremos en el modleo de pelicula
+ * creamos una variable para el nombre de la lista
+ */
+tabla_peli(req, res) {      
         Pelicula.findAll({}).then(function (pelicula) {
             if (pelicula) {
                // res.send(pelicula);
@@ -47,8 +69,15 @@ class pelicula_controller {
             res.send(error);
         });
     }
-
-    guardar_pelicula(req, res){
+/**
+ * @memberof pelicula_controller
+ * guardar_peli - metodo
+ * en el modelo de pelicula buscaremos el parametro de nombre de la pelicula
+ * haciendo una condicion para que no se pueda registrar la pelicula
+ * si esta repetido
+ * 
+ */
+guardar_pelicula(req, res){
         Pelicula.findAll({ where: { nombre_peli: req.body.nombre_peli } }).then(function (resultado){
             if(resultado.length >0){
                 //res.send('El correo ya existe, ingrese otro');
@@ -79,6 +108,19 @@ class pelicula_controller {
             }   
         });
     }
+
+
+    /**
+     * @memberof pelicula_controller
+     * guardar_portada - Metodo
+     * utilizaremos la libreria de formidable
+     * para controlar el tamano de la imagen
+     * sus dimensiones y sus tipos de extensiones 
+     * utilizaremos path para la ruta de la imagen
+     * y los procesos de 
+     * redfile : leer el archivo
+     * writefile: escribir el archivo hasta que se suba
+     */
     guardarPortada(req, res, next) {
        
         var form = new formidable.IncomingForm();
@@ -141,10 +183,20 @@ class pelicula_controller {
         });
     }
 
+
+    /**
+     * @memberof pelicula_controller
+     * Modificar_pelicula
+     * buscaremos en pelicula (modelo) su external
+     * con la funcion result
+     * funcionara como una lista 
+     * primero requerimos los nombres del modelo
+     * segundo los names que corresponden al nombre del modelo
+     * asi se vera el cambio anterior y el nuevo 
+     */
     modificar_pelicula(req, res){
         Pelicula.findOne({where:{external_id:req.body.externalP}}).then(function (result){
             
-        
         result.nombre_peli= req.body.nombre_peli_M,
         result.genero=req.body.generoM,
         result.director=req.body.directorM,

@@ -2,7 +2,16 @@
 var models = require('../models');
 var Pelicula = models.pelicula;
 var Rol = require('../controladores/rol_controller');
-
+/**
+ *
+ *
+ * @class principal_controller
+ * listar_peliculas - METODO
+ * pelicula (modelo) buscamos su estado si es verdadero
+ * se crea el rol
+ * y se muestra la pelicula en lista
+ * 
+ */
 class principal_controller {
     listar_peliculas(req, res) {
         Pelicula.findAll({ where: { estado: true } }).then(function (pelicula) {

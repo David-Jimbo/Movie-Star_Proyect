@@ -6,6 +6,19 @@ var uuid = require('uuid');
 var bcrypt = require('bcrypt-nodejs');
 var sequelize = require('sequelize');
 const saltRounds = 8;
+
+
+
+/**
+ * funcion crear_roles
+ * buscamos en el modleo rol
+ * utilizamos el rol.bulkCreate para crear los tipos de roles
+ * luego requerimos el modelo persona
+ * encriptamos la clave con generateHash
+ * y guardamos los datos de la persona 
+ * vinculando con cuenta
+ *
+ */
 function crear_roles(){
     var rol = models.rol;
     rol.findAll().then(function (lista){
