@@ -29,6 +29,14 @@ var horario = require('../controladores/horarios_controller');
 var horarioC = new horario();
 
 
+//boletos controller
+var boletos = require('../controladores/boleto_controller')
+var Boletos = new boletos(); 
+
+//pagos controllers
+var pago = require('../controladores/pagos_controller');
+var Pago = new pago();
+
 //controla si las personas estan iniciadas sesion
 var auth = function middleWare(req, res, next) {
     if (req.isAuthenticated()) {
@@ -122,6 +130,14 @@ router.get('/butacas', function (req, res, next) {
 router.get('/n', function(req,res, next){
     res.render('layout')
 })
+
+
+router.get('/tipoBoletos', Boletos.tipoBoletos);
+router.get('/eleccionBoletos/:precioTotal:/cantidadBoletos', Boletos.eleccionBoletos);
+
+
+router.get('/ver_pago', Pago.verPago);
+router.get('/pagoStatus', Pago.resultadoPago);
 
 
 module.exports = router;

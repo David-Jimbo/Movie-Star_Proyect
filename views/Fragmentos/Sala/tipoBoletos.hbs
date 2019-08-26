@@ -1,0 +1,229 @@
+<div class="modal-content">
+  <div id="content_hero" style="background-image: url(images/hero-contact.jpg)">
+    <div class="container">
+      <div class="row blurb scrollme animateme" data-when="exit" data-from="0" data-to="1" data-opacity="0"
+        data-translatey="100">
+        <div class="col-md-9">
+
+          <h1>Tipos de boletos disponibles</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function sumarestaTotal(parEProm, parEValo) {
+
+      var varTotaTota = 0;
+      var varCantTota = 0;
+      var varCodiProm = '';
+      var inputs = "";
+      var sumPromo = 0;
+      var cantPromo = "";
+      var varTipoPago = "";
+      var varTempPago = "";
+
+      // sumo o resto los valores
+      if (parEProm != '' && parEValo != '') {
+        varValoCantProm = parseFloat($("input[name='txtCant_" + parEProm + "']").val()) + parseFloat(parEValo);
+
+        var varTr = '';
+        varTr = varTr + '  <td></td>';
+        varTr = varTr + '  <td></td>';
+        varTr = varTr + ' <td>' + varValoCantProm + '</td>';
+
+        var varTrn = '';
+        varTrn = varTrn + '  <td></td>';
+        varTrn = varTrn + '  <td></td>';
+
+
+        if (parseFloat(varValoCantProm) <= 0) {
+          $("input[name='txtCant_" + parEProm + "']").val(0);
+          $('#precio_' + parEProm).html(0);
+          tot();
+          cant()
+        } else {
+          $("input[name='txtCant_" + parEProm + "']").val(varValoCantProm);
+          var precio = $('#txtPrec_' + parEProm).val()
+          var t = parseFloat(precio * varValoCantProm).toFixed(2);
+          $('#precio_' + parEProm).html(t);
+          tot();
+          cant()
+        }
+
+        function tot() {
+          var totalDeuda = 0;
+          var varTrn = '';
+          varTrn = varTrn + '  <td></td>';
+          varTrn = varTrn + '  <td></td>';
+          varTrn = varTrn + ' <td>' + totalDeuda + '</td>';
+          $(".precio").each(function () {
+            totalDeuda += parseFloat($(this).html()) || 0;
+          });
+          $('#precioTotal').html(parseFloat(totalDeuda).toFixed(2))
+          $('#preBol').val(parseFloat(totalDeuda).toFixed(2))
+        }
+
+        function cant() {
+          var totalBoletos = 0;
+          var varTrn = '';
+          varTrn = varTrn + '  <td></td>';
+          varTrn = varTrn + '  <td></td>';
+          varTrn = varTrn + ' <td></td>';
+          varTrn = varTrn + ' <td>' + totalBoletos + '</td>';
+          $(".spinbox-input").each(function () {
+            totalBoletos += Number($(this).val());
+          });
+
+          $('#cantidadTotal').html(totalBoletos)
+          $('#cantBol').val(totalBoletos)
+        }
+
+
+      }
+    }
+  </script>
+
+  <div class="container section small-padding">
+    <div class="row">
+      <div class="col-sm-12">
+        <h2>Elija los tipos de Boleto que desea adquirir</h2>
+
+        <input name="txtPrec_0002" id="txtPrec_0002" type="hidden" value="6.00" class="form-control input-mini ">
+        <input name="txtPrec_0003" id="txtPrec_0003" type="hidden" value="5.00" class="form-control input-mini ">
+        <input name="txtPrec_0004" id="txtPrec_0004" type="hidden" value="3.00" class="form-control input-mini ">
+        <input name="txtPrec_0005" id="txtPrec_0005" type="hidden" value="3.00" class="form-control input-mini ">
+
+
+        <table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%" style="border: 0px solid #000000;">
+          <tbody>
+            <tr>
+              <td width="48%" valign="top">
+                <table class="table table-striped" id="tabPrec">
+                  <thead>
+                    <tr>
+                      <th>Tipo de Boleto</th>
+                      <th>Precio por Boleto</th>
+                      <th>Precio total</th>
+                      <th>Cantidad</th>
+                    </tr>
+                  </thead>
+                  <tbody id="fil_0">
+                    <tr class="active" id="tipo_0002">
+                      <td>ADULTO</td>
+                      <td class="labPrec_0002" id="labPrec_0002">$ 6.00</td>
+                      <td><span class="precio" id="precio_0002"></span></td>
+                      <td>
+                        <div class="input-group">
+                          <div class="input-group-btn"> <button type="button"
+                              onclick="sumarestaTotal(&#39;0002&#39;,&#39;-1&#39;); return false;" id="btnDe_0002"
+                              class="btn btn-default" aria-label="Bold"
+                              style="border-top-left-radius: 5px; border-bottom-left-radius: 5px;">-</button>
+                            <input name="txtCant_0002" id="txtCant_0002" type="text" value="0" maxlength="2" readonly=""
+                              class="form-control input-mini spinbox-input"
+                              style="    width: 20% !important; height: 34px;float: none;display: inline;top: 4px;text-align: center;"
+                              aria-label="">
+                            <button type="button" id="btnIn_0002"
+                              onclick="sumarestaTotal(&#39;0002&#39;,&#39;1&#39;); return false;"
+                              class="btn btn-default" aria-label="Bold"
+                              style="border-top-right-radius: 5px;border-bottom-right-radius: 5px;">+</button>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="active" id="2D NIÑO">
+                      <td>NIÑO</td>
+                      <td class="precio-boleto" id="labPrec_0003">$ 5.00</td>
+                      <td><span class="precio" id="precio_0003"></span></td>
+                      <td>
+                        <div class="input-group">
+                          <div class="input-group-btn"> <button type="button"
+                              onclick="sumarestaTotal(&#39;0003&#39;,&#39;-1&#39;); return false;" id="btnDe_0003"
+                              class="btn btn-default" aria-label="Bold"
+                              style="border-top-left-radius: 5px; border-bottom-left-radius: 5px;"> -</button>
+                            <input name="txtCant_0003" id="txtCant_0003" type="text" value="0" maxlength="2" readonly=""
+                              class="form-control input-mini spinbox-input"
+                              style="    width: 20% !important; height: 34px;float: none;display: inline;top: 4px;text-align: center;"
+                              aria-label=""> <button type="button" id="btnIn_0003"
+                              onclick="sumarestaTotal(&#39;0003&#39;,&#39;1&#39;); return false;"
+                              class="btn btn-default" aria-label="Bold"
+                              style="border-top-right-radius: 5px;border-bottom-right-radius: 5px;">+</button>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="active" id="2D TERCERA EDAD">
+                      <td>TERCERA EDAD</td>
+                      <td class="precio-boleto" id="labPrec_0004">$ 3.00</td>
+                      <td><span class="precio" id="precio_0004"></span></td>
+                      <td>
+                        <div class="input-group">
+                          <div class="input-group-btn"> <button type="button"
+                              onclick="sumarestaTotal(&#39;0004&#39;,&#39;-1&#39;); return false;" id="btnDe_0004"
+                              class="btn btn-default" aria-label="Bold"
+                              style="border-top-left-radius: 5px; border-bottom-left-radius: 5px;">-</button>
+                            <input name="txtCant_0004" id="txtCant_0004" type="text" value="0" maxlength="2" readonly=""
+                              class="form-control input-mini spinbox-input"
+                              style="    width: 20% !important; height: 34px;float: none;display: inline;top: 4px;text-align: center;"
+                              aria-label="">
+                            <button type="button" id="btnIn_0004"
+                              onclick="sumarestaTotal(&#39;0004&#39;,&#39;1&#39;); return false;"
+                              class="btn btn-default" aria-label="Bold"
+                              style="border-top-right-radius: 5px;border-bottom-right-radius: 5px;">+</button>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="active" id="2D DISCAPACIDAD">
+                      <td>DISCAPACIDAD</td>
+                      <td class="precio-boleto" id="labPrec_0005">$ 3.00</td>
+                      <td><span class="precio" id="precio_0005"></span></td>
+                      <td>
+                        <div class="input-group">
+                          <div class="input-group-btn">
+                            <button type="button" onclick="sumarestaTotal(&#39;0005&#39;,&#39;-1&#39;); return false;"
+                              id="btnDe_0005" class="btn btn-default" aria-label="Bold"
+                              style="border-top-left-radius: 5px; border-bottom-left-radius: 5px;">-</button>
+                            <input name="txtCant_0005" id="txtCant_0005" type="text" value="0" maxlength="2" readonly=""
+                              class="form-control input-mini spinbox-input"
+                              style="width: 20% !important; height: 34px;float: none;display: inline;top: 4px;text-align: center;"
+                              aria-label="">
+                            <button type="button" id="btnIn_0005"
+                              onclick="sumarestaTotal(&#39;0005&#39;,&#39;1&#39;); return false;"
+                              class="btn btn-default" aria-label="Bold"
+                              style="border-top-right-radius: 5px;border-bottom-right-radius: 5px;">+</button>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td><b>Total: $ <span id="precioTotal"></span></b></td>
+                      <td><b>Cantidad de boletos:<span id="cantidadTotal"></span></b></td>
+                    </tr>
+                  </tfoot>
+                </table>
+
+              </td>
+            </tr>
+          </tbody>
+
+        </table>
+
+        <form id="hol" class="login" method="POST" action="/eleccionBoletos"></form>
+        <input type="text" hidden id="preBol">
+        <input type="text" hidden id="cantBol">
+        <div class="form" style="text-align: right">
+          <br>
+          <a type='' id="reg" href="/" class="btn btn-danger" value="">Cancelar</a>
+          <button type='submit' id="reg" class="btn btn-success" value="submit">Siguiente</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  
